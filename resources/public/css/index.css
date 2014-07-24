@@ -1,0 +1,168 @@
+/* Color Themes
+   Dark -> Light
+   1: #34495e (Black)
+   2: #3498db (Blue)
+   3: #1abc9c (Turquois)
+   4: #2ecc71 (Green)
+   5: #ecf0f1 (Grey/White)
+
+ Background: #ecf0f1 (black)
+ Main: #3498db (blue)
+ Italics: #F0F2EE (white)
+ Bold: #A3FF9B (green)
+ Code: #3EFBFF (cyan)*/
+
+#title, #subtitle {
+    color: #ecf0f1;
+}
+
+body {
+    background: repeat scroll #ecf0f1;
+    color: #34495e;
+    font-size: medium;
+}
+
+#general {
+    padding-left: 12em;
+}
+
+#general.active {
+    padding-left: 0em;
+}
+
+#sideMenu {
+    margin-left: -12em;
+    width: 12em;
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    background: repeat scroll white;
+    padding: 2.5em 1em 0 1em;
+}
+
+#sideMenu.active {
+    left: -2em;
+}
+
+#sideMenu li {
+    color: #34495e;
+    font-weight: bold;
+    padding: 0.3em;
+}
+
+#sideMenu li a {
+    font-weight: normal;
+}
+
+#sideMenuItems {
+    height: 60%;
+}
+
+.pure-menu.pure-menu-open {
+    border: 0em none;
+    background: none transparent;
+}
+.pure-menu.pure-menu-open li a:hover{
+    color: #ecf0f1;
+    background-color: #3498db;
+}
+
+#home {
+    text-align: center;
+    display: block;
+    font-size: larger;
+    margin-bottom: 2.5em;
+    height: 10%;
+}
+
+#home a:hover {
+    color: #ecf0f1;
+    background-color: #3498db;
+}
+
+#contact {
+    heigth: 10%;
+}
+.contact {
+    font-size: smaller; 
+}
+
+#main {
+    /* border: red solid 2px; */
+}
+
+#mainHead {
+    text-align: center;
+    font-size: larger;
+    padding: 1em;
+    background: #3498db repeat center;
+    /* border: brown solid 2px; */
+}
+
+hr {
+    margin: 0px;
+}
+
+#mainContent {
+    margin: 0 auto 2.5em;
+    max-width: 1000px;
+    /* border: green solid 2px; */
+}
+
+
+/* Custom Button for side-menu *//* -- Dynamic Button For Responsive Menu -------------------------------------*/
+
+/*
+The button to open/close the Menu is custom-made and not part of Pure. Here's
+how it works:
+*/
+
+/*
+`.menu-link` represents the responsive menu toggle that shows/hides on
+small screens.
+*/
+.menu-link {
+    position: fixed;
+    display: block; /* show this only on small screens */
+    top: 0;
+    left: 22.4em; /* "#menu width" */
+    background: #3498db;
+    font-size: 10px; /* change this value to increase/decrease button size */
+    z-index: 10;
+    width: 2em;
+    height: auto;
+    padding: 2.1em 1.6em;
+}
+
+    .menu-link:hover,
+    .menu-link:focus {
+        background: #fff;
+    }
+
+    .menu-link span {
+        position: relative;
+        display: block;
+    }
+
+    .menu-link span,
+    .menu-link span:before,
+    .menu-link span:after {
+        background-color: #000;
+        width: 100%;
+        height: 0.2em;
+    }
+
+    .menu-link span:before,
+    .menu-link span:after {
+            position: absolute;
+            margin-top: -0.6em;
+            content: " ";
+        }
+
+        .menu-link span:after {
+            margin-top: 0.6em;
+        }
+	
+	.menu-link.active {
+	    left: 0em;
+	}
