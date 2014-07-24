@@ -26,9 +26,6 @@ body {
     padding-left: 12em;
 }
 
-#general.active {
-    padding-left: 0em;
-}
 
 #sideMenu {
     margin-left: -12em;
@@ -38,10 +35,6 @@ body {
     bottom: 0px;
     background: repeat scroll white;
     padding: 2.5em 1em 0 1em;
-}
-
-#sideMenu.active {
-    left: -2em;
 }
 
 #sideMenu li {
@@ -122,47 +115,77 @@ how it works:
 small screens.
 */
 .menu-link {
-    position: fixed;
-    display: block; /* show this only on small screens */
-    top: 0;
-    left: 22.4em; /* "#menu width" */
-    background: #3498db;
-    font-size: 10px; /* change this value to increase/decrease button size */
-    z-index: 10;
-    width: 2em;
-    height: auto;
-    padding: 2.1em 1.6em;
+    display: none;
 }
 
-    .menu-link:hover,
-    .menu-link:focus {
-        background: #fff;
+.menu-link:hover,
+.menu-link:focus {
+    background: #fff;
+}
+
+.menu-link span {
+    position: relative;
+    display: block;
+
+}
+
+.menu-link span,
+.menu-link span:before,
+.menu-link span:after {
+    background-color: #000;
+    width: 100%;
+    height: 0.2em;
+}
+
+.menu-link span:before,
+.menu-link span:after {
+    position: absolute;
+    margin-top: -0.6em;
+    content: " ";
+}
+
+.menu-link span:after {
+    margin-top: 0.6em;
+}
+
+.menu-link.active {
+    left: 22.4em;
+}
+
+@media (max-width: 90em) {
+    .header,
+    .content {
+        padding-left: 2em;
+        padding-right: 2em;
     }
 
-    .menu-link span {
-        position: relative;
-        display: block;
+    #general {
+        padding-left: 0em; /* left col width "#menu" */
+    }
+    #sideMenu {
+        left: -2em;
     }
 
-    .menu-link span,
-    .menu-link span:before,
-    .menu-link span:after {
-        background-color: #000;
-        width: 100%;
-        height: 0.2em;
+    .menu-link {
+	position: fixed;
+	top: 0;
+	left: 0em; /* "#menu width" */
+	background: #3498db;
+	font-size: 10px; /* change this value to increase/decrease button size */
+	z-index: 10;
+	width: 2em;
+	height: auto;
+	padding: 2.1em 1.6em;
+	display: block; /* show this only on small screens */
     }
 
-    .menu-link span:before,
-    .menu-link span:after {
-            position: absolute;
-            margin-top: -0.6em;
-            content: " ";
-        }
 
-        .menu-link span:after {
-            margin-top: 0.6em;
-        }
-	
-	.menu-link.active {
-	    left: 0em;
-	}
+    #general.active {
+	padding-left: 12em;
+    }
+
+    #sideMenu.active {
+	margin-left: 2em;
+	width: 12em;
+    }
+}
