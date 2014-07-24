@@ -149,7 +149,7 @@ small screens.
 }
 
 .menu-link.active {
-    left: 22.4em;
+    left: 14em;
 }
 
 @media (max-width: 90em) {
@@ -171,7 +171,7 @@ small screens.
 	top: 0;
 	left: 0em; /* "#menu width" */
 	background: #3498db;
-	font-size: 10px; /* change this value to increase/decrease button size */
+	font-size: 1em; /* change this value to increase/decrease button size */
 	z-index: 10;
 	width: 2em;
 	height: auto;
@@ -188,4 +188,14 @@ small screens.
 	margin-left: 2em;
 	width: 12em;
     }
+}
+
+@media (max-device-width: 48em) {
+    body {
+	font-size: 28pt;
+    }
+
+   .menu-link.active {
+	left: 0em;
+   }
 }
