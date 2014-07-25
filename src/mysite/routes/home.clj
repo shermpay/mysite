@@ -5,5 +5,9 @@
 (defn home []
   (layout/home))
 
+(defn dev []
+  (layout/dev))
+
 (defroutes home-routes
-  (GET "/" [] (home)))
+  (GET "/" [] (home))
+  (GET "/dev" [] (dev)))
