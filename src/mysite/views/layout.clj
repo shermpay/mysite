@@ -1,5 +1,5 @@
 (ns mysite.views.layout
-  (:require [hiccup.page :refer [html5 include-css]])
+  (:require [hiccup.page :refer [html5 include-css include-js]])
   (:use hiccup.core))
 
 (defn- side-menu-heading [text]
@@ -14,13 +14,10 @@
     [:html
      [:head
       [:title "Sherman Pay's Website"]
-      [:link {:rel "stylesheet", :href "http://yui.yahooapis.com/pure/0.5.0/pure-min.css"}]
-      [:link {:rel "stylesheet", :href "/css/index.css"}]
-      [:link {:rel "icon", :type "image/ico", :href "/img/icons/favicon.ico"}]
-      [:link {:rel "stylesheet", :href (str wd "/resources/public/css/index.css")}]
-      [:link {:rel "icon", :type "image/ico", :href (str wd "/resources/public/img/icons/favicon.ico")}]]
+      (include-css "http://yui.yahooapis.com/pure/0.5.0/pure-min.css" "/css/index.css")
+      (include-js "/js/main.js")
+      [:link {:rel "icon", :type "image/ico", :href "/img/icons/favicon.ico"}]]
 
-     [:script {:src "/js/main.js" :type "text/javascript"}]
      [:body
       [:div#general
        [:a {:id "menuLink", :class "menu-link", :href "#"} [:span]]
@@ -46,11 +43,16 @@
 
        [:div#main
         [:div#mainHead
-         [:span#title [:h1 "Home"]]
-         [:span#subtitle [:h2 "Welcome to my site!"]]]
+         [:span#title [:h1 "Sherman Pay"]]
+         [:span#subtitle [:h2 "Blog | Portfolio"]]]
         [:hr]
         [:div#mainContent
-         [:p ]]]]]])))
+          [:div.content 
+           [:a {:href "#"} [:h2 "Hello World!" ]]
+           [:p
+            "This is the first official blog post on "
+            [:a {:href "http://shermanpay.com"} "shermanpay.com"] ". "
+            "I finally found time and motivation to do this. Feel free to browse around!"]]]]]]])))
 (defn common [& body]
   (html5
     [:head
