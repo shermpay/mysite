@@ -25,11 +25,11 @@
       [:div#sideMenu
        [:div {:class "pure-menu pure-menu-open"}
         [:div#home
-         [:a {:href "http:/shermanpay.com"} [:h2 "(main)"]]]
+         [:a {:href "/"} [:h2 "(main)"]]]
         [:hr]
         [:ul#sideMenuItems
          (side-menu-heading "Blog")
-         (side-menu-item "Archive" "#")
+         (side-menu-item "Archive" "/blog")
          (side-menu-heading "Projects")
          (side-menu-item "All" "#")
          (side-menu-heading "About Me")
@@ -50,14 +50,17 @@
        [:div#mainContent
         body]]]]]))
 
+(defn content-card [header content]
+  [:div.content
+   [:h2 header]
+   [:p content]])
 (defn home []
   (common
-   [:div.content 
-    [:a {:href "#"} [:h2 "Hello World!" ]]
-    [:p
-     "This is the first official blog post on "
-     [:a {:href "http://shermanpay.com"} "shermanpay.com"] ". "
-     "I finally found time and motivation to do this. Feel free to browse around!"]]))
+   [:h2 "hello"]))
+
+(defn blog [& blog-posts]
+  (common
+   (map (fn [x] (content-card (:title x) (:contents x))) blog-posts)))
 
 (defn dev []
   (common
@@ -67,7 +70,8 @@
                      "MySQL database to store Blog Posts."])]
    [:div.content
     [:h2 "Current"]
-    (unordered-list ["Blog post written in Clojure Hiccup file"])]
+    (unordered-list ["Blog pulled directly from DB"]
+                    ["Blog post written in markdown. (Use markdown-clj)"])]
 
    [:div.content
     [:h2 "Future"]

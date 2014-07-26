@@ -1,4 +1,4 @@
-(ns mysite.model
+(ns mysite.models.blog
   (:require [clojure.java.jdbc :as jdbc]))
 
 (def spec {:classname "com.mysql.jdbc.Driver"
@@ -7,7 +7,7 @@
            :user "shermpay"
            :password "qmonkey"})
 
-(defn create-blog-table []
+(defn create-table []
   (jdbc/db-do-commands
    spec
    (jdbc/create-table-ddl :blog
@@ -17,21 +17,21 @@
                              [:contents :text]
                              [:tags "varchar(128)"])))
 
-(defn select-*-blog []
+(defn select-* []
   (jdbc/query spec ["select * from blog"]))
 
-(defn select-*-blog-desc []
+(defn select-*-desc []
   (jdbc/query spec ["select * from blog order by id desc"]))
 
-(defn drop-blog-table []
+(defn drop-table []
   (jdbc/db-do-commands
    spec
    (jdbc/drop-table-ddl :blog)))
 
-(defn create-blog-post [blog-post]
+(defn create-post [blog-post]
   (jdbc/insert!
    spec :blog
    blog-post))
 
-(defn delete-blog-post [id]
+(defn delete-post [id]
   (jdbc/delete! spec :blog ["id = ?" id]))

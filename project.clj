@@ -7,7 +7,8 @@
                  [ring-server "0.3.1"]
                  [org.clojure/java.jdbc "0.3.4"]
                  [mysql/mysql-connector-java "5.1.25"]
-                 [korma "0.3.2"]]
+                 [korma "0.3.2"]
+                 [markdown-clj "0.9.47"]]
   :plugins [[lein-ring "0.8.10"]
             [lein-cljsbuild "1.0.3"]]
   :ring {:handler mysite.handler/app
