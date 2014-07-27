@@ -4,18 +4,26 @@
             [hiccup.form :refer [form-to label password-field submit-button text-area
                                  text-field with-group]]
             [hiccup.core :refer :all]
+            [markdown.core :as markdown]
 
             [mysite.views.layout :as layout]))
 
 (defn view [& blog-posts]
   (layout/common
-   (map (fn [x] (layout/content-card (:title x) (:content x))) blog-posts)))
+   [:title "Blog"
+    :subtitle "Computers? LOL!"]
+   (map (fn [post] (layout/content-card (:title post)
+                                        (markdown/md-to-html-string (:content post))
+                                        :tags (:tags post)))
+        blog-posts))
+
+  )
 
 (defn new []
   (layout/common
    [:h2 "Editing "]
    (form-to
-    {:class "pure-form pure-form-stacked"} [:post "/blog/post"]
+    {:id "blog-post" :class "pure-form pure-form-stacked"} [:post "/blog/post"]
     [:div {:class ""}
      [:div {:class ""}
       (label :blog-title "Blog Title: ") (text-field :blog-title)

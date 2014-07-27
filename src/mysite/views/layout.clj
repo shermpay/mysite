@@ -9,13 +9,19 @@
 (defn- side-menu-item [text link]
   [:li [:a {:href link} text]])
 
-(defn common [& body]
+(defn common [[:title title, :subtitle subtitle] & body]
   (html5
    [:html
     [:head
      [:title "Sherman Pay's Website"]
-     (include-css "http://yui.yahooapis.com/pure/0.5.0/pure-min.css" "/css/index.css")
-     (include-js "/js/main.js")
+     (include-css "http://yui.yahooapis.com/pure/0.5.0/pure-min.css"
+                  "/css/index.css"
+                  "/css/sh/shCore.css"
+                  "/css/sh/shCoreEmacs.css"
+                  "/css/sh/shThemeEmacs.css")
+     (include-js "/js/main.js"
+                 "/js/sh/shCore.js"
+                 "/js/sh/shBrushJava.js")
      [:link {:rel "icon", :type "image/ico", :href "/img/icons/favicon.ico"}]]
 
     [:body
@@ -44,19 +50,26 @@
       [:div#main
        [:div#mainHead
         [:div#headText
-         [:span#title [:h1 "Sherman Pay"]]
-         [:span#subtitle [:h2 "Home of my [Blog | Portfolio]"]]]]
+         [:span#title [:h1 title]]
+         [:span#subtitle [:h2 subtitle]]]]
        [:hr]
        [:div#mainContent
-        body]]]]]))
+        body]
+       [:script {:type "text/javascript"} "SyntaxHighlighter.all()"]]]]]))
 
-(defn content-card [header content]
+(defn content-card [header content & {tags :tags}]
   [:div.content
-   [:h2 header]
-   [:p content]])
+   [:div#header
+    [:h1 header]]
+   [:hr]
+   [:p content]
+   [:hr]
+   [:p tags]])
 
 (defn home []
   (common
+   [:title "Sherman Pay"
+    :subtitle "Home of my [Blog | Portfolio]"]
    [:h2 "hello"]))
 
 (defn dev []
