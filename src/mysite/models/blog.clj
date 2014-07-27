@@ -5,7 +5,7 @@
 (def spec (:database-spec config/*credentials*))
 
 (defn check-table []
-  (let [tables (jdbc/query spec ["show tables like 'blog"])]
+  (let [tables (jdbc/query spec ["show tables like 'blog'"])]
     (= 1 (count tables))))
 
 (defn create-table []
