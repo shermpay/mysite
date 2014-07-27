@@ -54,13 +54,10 @@
   [:div.content
    [:h2 header]
    [:p content]])
+
 (defn home []
   (common
    [:h2 "hello"]))
-
-(defn blog [& blog-posts]
-  (common
-   (map (fn [x] (content-card (:title x) (:contents x))) blog-posts)))
 
 (defn dev []
   (common
@@ -70,8 +67,8 @@
                      "MySQL database to store Blog Posts."])]
    [:div.content
     [:h2 "Current"]
-    (unordered-list ["Blog pulled directly from DB"]
-                    ["Blog post written in markdown. (Use markdown-clj)"])]
+    (unordered-list ["Blog pulled directly from DB"
+                     "Blog post written in markdown. (Use markdown-clj)"])]
 
    [:div.content
     [:h2 "Future"]

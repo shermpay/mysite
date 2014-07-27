@@ -12,3 +12,4 @@ pom.xml
 .nrepl-port
 *.swp
 .lein-repl-history
+resources/private

@@ -1,11 +1,8 @@
 (ns mysite.models.blog
-  (:require [clojure.java.jdbc :as jdbc]))
+  (:require [clojure.java.jdbc :as jdbc]
+            [mysite.config :as config]))
 
-(def spec {:classname "com.mysql.jdbc.Driver"
-           :subprotocol "mysql"
-           :subname "//127.0.0.1:3306/mysite"
-           :user "shermpay"
-           :password "qmonkey"})
+(def spec (:database-spec config/*credentials*))
 
 (defn create-table []
   (jdbc/db-do-commands
@@ -14,7 +11,7 @@
                              [:id :int :primary :key :auto_increment]
                              [:title "varchar(64)"]
                              [:entry_date :datetime]
-                             [:contents :text]
+                             [:content :text]
                              [:tags "varchar(128)"])))
 
 (defn select-* []
