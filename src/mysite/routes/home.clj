@@ -13,9 +13,8 @@
   (let [posts (blog-model/select-*-desc)
         latest (first posts)
         latest-2 (second posts)]
-    (if (blog-model/check-create-table)
-      (blog/view latest latest-2)
-      (.write *err* "Unable to creat blog table"))))
+    (blog-model/check-create-table)
+    (blog/view latest latest-2)))
 
 (defn new-blog []
   (blog/new))

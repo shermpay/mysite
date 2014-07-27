@@ -20,9 +20,8 @@
 
 (defn check-create-table []
   (jdbc/with-db-connection [_ spec]
-    (if (check-table)
-      (create-table)
-      false)))
+    (if (not (check-table))
+      (create-table))))
 
 (defn select-* []
   (jdbc/query spec ["select * from blog"]))
