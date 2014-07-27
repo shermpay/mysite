@@ -4,6 +4,10 @@
 
 (def spec (:database-spec config/*credentials*))
 
+(defn check-table []
+  (let [tables (jdbc/query spec ["show tables like 'blog"])]
+    (= 1 (count tables))))
+
 (defn create-table []
   (jdbc/db-do-commands
    spec
@@ -13,6 +17,12 @@
                              [:entry_date :datetime]
                              [:content :text]
                              [:tags "varchar(128)"])))
+
+(defn check-create-table []
+  (jdbc/with-db-connection []
+    (if (check-table)
+      (create-table)
+      false)))
 
 (defn select-* []
   (jdbc/query spec ["select * from blog"]))
