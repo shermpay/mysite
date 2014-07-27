@@ -3,9 +3,9 @@
   informaiton to web site"
   [:require [clojure.edn]])
 
-(def *credentials-path* "private/config.edn")
+(def ^:dynamic *credentials-path* "private/config.edn")
 
-(def *credentials*
+(def ^:dynamic *credentials*
   (-> *credentials-path*
       (clojure.java.io/resource)
       (slurp)
