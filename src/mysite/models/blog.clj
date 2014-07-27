@@ -19,7 +19,7 @@
                              [:tags "varchar(128)"])))
 
 (defn check-create-table []
-  (jdbc/with-db-connection []
+  (jdbc/with-db-connection [_ spec]
     (if (check-table)
       (create-table)
       false)))
