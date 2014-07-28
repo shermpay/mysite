@@ -51,6 +51,10 @@ body {
     height: 80%;
 }
 
+#sideMenuItem {
+    margin-top: 2em;
+}
+
 .pure-menu.pure-menu-open {
     border: 0em none;
     background: none transparent;
@@ -92,13 +96,12 @@ body {
     padding-left: 3em;
     padding-right: 3em;
     margin: 0 auto;
-    max-width: 60em;
     /* border: brown solid 2px; */
 }
 
 #headText {
     margin: 2em auto 0 auto;
-    max-width: 46em;
+    max-width: 48em;
 }
 
 hr {
@@ -107,7 +110,7 @@ hr {
 
 #mainContent {
     margin: 0 auto 1em;
-    max-width: 54em;
+    max-width: 56em;
     padding-top: 1em;
     padding-left: 3em;
     padding-right: 3em;
@@ -232,5 +235,4 @@ small screens.
 .syntaxhighlighter {
     padding: 0.5em;
     max-width: 92%;
-    font-size: 0.5em;
 }

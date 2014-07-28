@@ -1,6 +1,6 @@
 (ns mysite.models.projects
-  (:require [clojure.java.jdbc :as jdbc
-             mysite.config :as config]))
+  (:require [clojure.java.jdbc :as jdbc]
+            [mysite.config :as config]))
 
 (def spec {:database-spec config/*credentials*})
 
@@ -17,5 +17,5 @@
                           [:date :datetime]
                           [:version :int]
                           [:content :text]
-                          [:github : "varchar(255)"]
+                          [:github "varchar(255)"]
                           [:tags "varchar(128)"])))

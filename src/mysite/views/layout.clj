@@ -32,7 +32,7 @@
       [:div#sideMenu
        [:div {:id "sideMenuTop", :class "pure-menu pure-menu-open"}
        [:div#home
-         [:a {:href "/"} [:h2 "(main)"]]]
+        [:a {:href "/"} [:h2 "(main)"]]]
         [:hr]
         [:ul#sideMenuItem
          (side-menu-heading "Blog")

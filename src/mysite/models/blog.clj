@@ -39,8 +39,8 @@
 
 (defn update-post [id blog-post]
   (jdbc/update!
-   spec table-key
+   model/spec table-key
    blog-post ["id = ? " id]))
 
 (defn delete-post [id]
-  (jdbc/delete! spec table-key ["id = ?" id]))
+  (jdbc/delete! model/spec table-key ["id = ?" id]))
