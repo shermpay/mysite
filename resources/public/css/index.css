@@ -227,3 +227,10 @@ small screens.
 	left: 0em;
    }
 }
+
+/* Others */
+.syntaxhighlighter {
+    padding: 0.5em;
+    max-width: 92%;
+    font-size: 0.5em;
+}
