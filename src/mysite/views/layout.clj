@@ -1,6 +1,7 @@
 (ns mysite.views.layout
   (:require [hiccup.page :refer [html5 include-css include-js]]
-            [hiccup.element :refer [unordered-list ordered-list link-to]])
+            [hiccup.element :refer [unordered-list ordered-list link-to]]
+            [markdown.core :as markdown])
   (:use hiccup.core))
 
 (defn- side-menu-heading [text]
@@ -29,11 +30,11 @@
       [:a {:id "menuLink", :class "menu-link", :href "#"} [:span]]
 
       [:div#sideMenu
-       [:div {:class "pure-menu pure-menu-open"}
-        [:div#home
+       [:div {:id "sideMenuTop", :class "pure-menu pure-menu-open"}
+       [:div#home
          [:a {:href "/"} [:h2 "(main)"]]]
         [:hr]
-        [:ul#sideMenuItems
+        [:ul#sideMenuItem
          (side-menu-heading "Blog")
          (side-menu-item "Archive" "/blog")
          (side-menu-heading "Projects")
@@ -42,7 +43,7 @@
          (side-menu-item "Technology" "#")
          (side-menu-item "Misc" "#")]]
 
-       [:div {:class "pure-menu pure-menu-open"}
+       [:div {:id "sideMenuContact" :class "pure-menu pure-menu-open"}
         [:ul#contact
          [:li.contact "Gmail: " [:a {:href "mailto:shermanpay1991@gmail.com"} "shermanpay1991"]]
          [:li.contact "Github: " [:a {:href "https://github.com/shermpay"} "shermpay"]]]]]
@@ -50,40 +51,53 @@
       [:div#main
        [:div#mainHead
         [:div#headText
-         [:span#title [:h1 title]]
+        [:span#title [:h1 title]]
          [:span#subtitle [:h2 subtitle]]]]
        [:hr]
        [:div#mainContent
         body]
        [:script {:type "text/javascript"} "SyntaxHighlighter.all()"]]]]]))
 
-(defn content-card [header content & {tags :tags}]
+(defn content-card [header content id date & {tags :tags edited :edited}]
   [:div.content
-   [:div#header
-    [:h1 header]]
+   [:div.content-header
+    [:h1 header]
+    [:div.meta-data
+     [:p
+      [:span.post-id "#" id " posted on "]
+      [:span.entry-date  date " "]
+      [:span.tags "Tags: " tags]]]]
    [:hr]
-   [:p content]
-   [:hr]
-   [:p tags]])
+   [:p content]])
 
-(defn home []
+(defn home [latest-post]
   (common
    [:title "Sherman Pay"
     :subtitle "Home of my [Blog | Portfolio]"]
-   [:h2 "hello"]))
+   [:h2 "Latest Post"]
+   [:hr]
+   (content-card (:title latest-post)
+               (markdown/md-to-html-string (:content latest-post))
+               (:id latest-post)
+               (:entry_date latest-post)
+               :tags (:tags latest-post))
+   (link-to "/blog" "More posts...")
+   [:h2 "Latest Project"]
+   [:hr]))
 
 (defn dev []
   (common
    [:div.content
     [:h2 "Beta"]
     (unordered-list ["Simple UI Design."
-                     "MySQL database to store Blog Posts."])]
+                     "MySQL database to store Blog Posts."
+                     "Blog pulled directly from DB"
+                     "Blog post written in markdown. (Use markdown-clj)"])]
    [:div.content
     [:h2 "Current"]
-    (unordered-list ["Blog pulled directly from DB"
-                     "Blog post written in markdown. (Use markdown-clj)"])]
+    (unordered-list ["Project hosting"
+                     "Project database"])]
 
    [:div.content
     [:h2 "Future"]
-    (unordered-list ["Blog posts written in markdown"
-                     "Blog post via browser interface."])]))
+    (unordered-list ["Tags Coloring"])]))

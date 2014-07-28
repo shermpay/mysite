@@ -7,25 +7,31 @@
             [mysite.config :as config]))
 
 (defn home []
-  (layout/home))
+  (let [posts (blog-model/select-*-desc)]
+    (blog-model/check-create-table)
+    (layout/home (first posts))))
+
 
 (defn view-blog []
-  (let [posts (blog-model/select-*-desc)
-        latest (first posts)
-        latest-2 (second posts)]
+  (let [posts (blog-model/select-*-desc)]
     (blog-model/check-create-table)
-    (blog/view latest latest-2)))
+        (apply blog/view (take blog/show-count posts))))
 
 (defn new-blog []
   (blog/new))
 
-(defn post-blog [title content tags username password]
+(defn edit-blog [id]
+  (blog/edit id))
+
+(defn post-blog [id title content tags username password]
   (if (config/user-validation :root username password)
     (let [post {:title title
                 :content content
                 :entry_date (java.util.Date.)
                 :tags tags}]
-      (blog-model/create-post post)
+      (if id
+        (blog-model/update-post id post)
+        (blog-model/create-post post))
       post)
     (. System/err println "Error posting blog. Username/Password invalid.")))
 
@@ -36,6 +42,7 @@
   (GET "/" [] (home))
   (GET "/blog" [] (view-blog))
   (GET "/blog/new" [] (new-blog))
-  (POST "/blog/post" [blog-title blog-content tags username password]
-        (post-blog blog-title blog-content tags username password))
+  (GET "/blog/edit" [id] (edit-blog id))
+  (POST "/blog/post" [id blog-title blog-content tags username password]
+        (post-blog id blog-title blog-content tags username password))
   (GET "/dev" [] (dev)))

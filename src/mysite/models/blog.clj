@@ -1,43 +1,46 @@
 (ns mysite.models.blog
   (:require [clojure.java.jdbc :as jdbc]
-            [mysite.config :as config]))
+            [mysite.config :as config]
+            [mysite.models.model :as model]))
 
-(def spec (:database-spec config/*credentials*))
+(def table-name "blog")
+(def table-key (keyword table-name))
 
 (defn check-table []
-  (let [tables (jdbc/query spec ["show tables like 'blog'"])]
-    (= 1 (count tables))))
+  (model/check-table table-name))
 
 (defn create-table []
-  (jdbc/db-do-commands
-   spec
-   (jdbc/create-table-ddl :blog
-                             [:id :int :primary :key :auto_increment]
-                             [:title "varchar(64)"]
-                             [:entry_date :datetime]
-                             [:content :text]
-                             [:tags "varchar(128)"])))
+  (model/create-table (keyword table-name)
+                      [:id :int :primary :key :auto_increment]
+                      [:title "varchar(64)"]
+                      [:entry_date :datetime]
+                      [:content :text]
+                      [:tags "varchar(128)"]))
 
 (defn check-create-table []
-  (jdbc/with-db-connection [_ spec]
-    (if (not (check-table))
-      (create-table))))
+  (model/check-create-table check-table create-table))
 
 (defn select-* []
-  (jdbc/query spec ["select * from blog"]))
+  (model/select-* table-name))
+
+(defn select-id [id]
+  (model/select-id table-name id))
 
 (defn select-*-desc []
-  (jdbc/query spec ["select * from blog order by id desc"]))
+  (jdbc/query model/spec ["select * from blog order by id desc"]))
 
 (defn drop-table []
-  (jdbc/db-do-commands
-   spec
-   (jdbc/drop-table-ddl :blog)))
+  (model/drop-table table-key))
 
 (defn create-post [blog-post]
   (jdbc/insert!
-   spec :blog
+   model/spec table-key
    blog-post))
 
+(defn update-post [id blog-post]
+  (jdbc/update!
+   spec table-key
+   blog-post ["id = ? " id]))
+
 (defn delete-post [id]
-  (jdbc/delete! spec :blog ["id = ?" id]))
+  (jdbc/delete! spec table-key ["id = ?" id]))
