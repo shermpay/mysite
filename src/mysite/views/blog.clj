@@ -11,11 +11,17 @@
 
 (def show-count 5)
 
+(defn blog-common [header & body]
+  (layout/common
+   header
+   (include-css "content.css")
+   body))
+
 (defn blog-card [header content id date & {tags :tags edited :edited}]
-  [:div.content
-   [:div.content-header
+  [:div.blog
+   [:div.blog-title
     [:h1 header]
-    [:div.meta-data
+    [:div.blog-meta
      [:p
       [:span.post-id "#" id " posted on "]
       [:span.entry-date  date " "]
@@ -24,7 +30,7 @@
    [:p (markdown/md-to-html-string content)]])
 
 (defn view [& blog-posts]
-  (layout/common
+  (blog-common
    [:title "Blog"
     :subtitle "Code blabbering"]
    (map (fn [post] (blog-card (:title post)
@@ -53,14 +59,14 @@
     (submit-button {:class "pure-button pure-button-primary"} "Post!")]))
 
 (defn edit [id]
-  (layout/common
+  (blog-common
    [:title "Blog"
     :subtitle "Editing"]
    (let [post (model/select-id :blog id)]
     (form (first post)))))
 
 (defn new []
-  (layout/common
+  (blog-common
    [:title "Blog"
    :subtitle "New Post"]
    (form {})))

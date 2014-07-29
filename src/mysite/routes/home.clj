@@ -29,8 +29,4 @@
 
 (defroutes home-routes
   (GET "/" [] (success (home)))
-
-  (GET "/projects" [] (projects))
-
-  ;; Errors
   (GET "/dev" [] (success (dev))))

@@ -19,7 +19,7 @@
                              [:new-date :datetime]
                              [:content :text]
                              [:docs "varchar(255)"]
-                             [:github "varchar(255)"]
+                             [:source "varchar(255)"]
                              [:tags "varchar(128)"]]})
 
 (defn check-table [table]

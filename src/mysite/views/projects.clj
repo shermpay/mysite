@@ -9,7 +9,7 @@
             [mysite.models :as model]
             [mysite.views.layout :as layout]))
 
-(defn project-card [{:keys [name content id version date docs github tags]}]
+(defn project-card [{:keys [name content id version date docs source tags]}]
   [:div.content
    [:div.content-header
     [:h1 name]
@@ -22,11 +22,42 @@
     [:hr]
     [:p (markdown/md-to-html-string content)]
     [:span
-     [:a [:href github] "Github "]
+     [:a [:href source] "Source "]
      [:a [:href docs] " Documentation"]]]])
 
-(defn view [& projects]
+(defn projects-common [header & body]
   (layout/common
+   header
+   (include-css "content.css")
+   body))
+
+(defn view [& projects]
+  (projects-common
    [:title "Projects"
     :subtitle "Code"]
    (map (fn [proj] (project-card proj)) projects)))
+
+(defn form [{:keys [id project-name project-content tags]}]
+  (form-to
+   {:id "projects-post" :class "pure-form pure-form-stacked"} [:post "/projects/post"]
+   [:div
+    [:div
+    (hidden-field :id id)
+    (label :project-name "Project Name: ") (text-field :project-name project-name)
+    (label :project-content "Content: ")
+    (text-area {:rows "10" :cols "100"} :project-content project-content)
+    [:p#word-count " words"]
+    (label :tags "Tags: ") (text-area {:cols "60"} :tags tags)]
+    (label :docs "Documentation URL: ") (text-field :docs )
+    [:div {:class "pure-group"}
+     (label :username "Credentials")
+     (text-field {:placeholder "username"} :username)
+     (password-field {:placeholder "password"})]
+    [:br]
+    (submit-button {:class "pure-button purebutton-primary"} "Post!")]))
+
+(defn new []
+  (projects-common
+   [:title "Projects"
+    :subtitle "defproject"]
+   (form {})))

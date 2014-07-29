@@ -118,22 +118,6 @@ hr {
     /* border: green solid 2px; */
 }
 
-.content {
-    padding: 0.5em 2em 0.5em 2em;
-    margin-top: 1em;
-    margin-bottom: 1em;
-    background: #fff;
-}
-
-.content .content-header .meta-data {
-    font-size: 0.8em;
-}
-
-.content .content-header .meta-data .tags {
-    float: right;
-}
-
-
 /* Custom Button for side-menu *//* -- Dynamic Button For Responsive Menu -------------------------------------*/
 
 /*

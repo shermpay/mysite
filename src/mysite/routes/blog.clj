@@ -7,7 +7,7 @@
             [mysite.views.blog :as blog]
             [mysite.config :as config]))
 
-(defn success-response [body]
+(defn- success-response [body]
   {:status 200, :headers {"Content-Type" "text/html"}, :body body})
 
 (defn view-blog

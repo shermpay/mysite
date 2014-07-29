@@ -6,7 +6,8 @@
             [compojure.handler :as handler]
             [compojure.route :as route]
             [mysite.routes.home :refer [home-routes]]
-            [mysite.routes.blog :refer [blog-routes]]))
+            [mysite.routes.blog :refer [blog-routes]]
+            [mysite.routes.projects :refer [projects-routes]]))
 
 (defn init []
   (println "mysite is starting"))
@@ -14,12 +15,13 @@
 (defn destroy []
   (println "mysite is shutting down"))
 
+
 (defroutes app-routes
   (route/resources "/")
   (route/not-found "Not Found"))
 
 (def app
-  (-> (routes home-routes blog-routes app-routes)
+  (-> (routes home-routes blog-routes projects-routes app-routes)
       (handler/site)
       (wrap-base-url)))
 
