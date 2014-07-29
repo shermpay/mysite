@@ -1,4 +1,4 @@
-(ns mysite.models.model
+(ns mysite.models
   (:require [clojure.java.jdbc :as jdbc]
             [mysite.config :as config]))
 
@@ -11,7 +11,13 @@
                          [:content :text]
                          [:tags "varchar(128)"]]
 
-                  })
+                  :projects [[:id :int :primary :key :auto_increment]
+                             [:name "varchar(64)"]
+                             [:date :datetime]
+                             [:version :int]
+                             [:content :text]
+                             [:github "varchar(255)"]
+                             [:tags "varchar(128)"]]})
 
 (defn check-table [table]
   {:pre (keyword? table)}

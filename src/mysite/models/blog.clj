@@ -27,20 +27,16 @@
   (model/select-id table-name id))
 
 (defn select-*-desc []
-  (jdbc/query model/spec ["select * from blog order by id desc"]))
+  (model/select-*-desc table-name))
 
 (defn drop-table []
   (model/drop-table table-key))
 
 (defn create-post [blog-post]
-  (jdbc/insert!
-   model/spec table-key
-   blog-post))
+  (model/insert-row! table-key blog-post))
 
 (defn update-post [id blog-post]
-  (jdbc/update!
-   model/spec table-key
-   blog-post ["id = ? " id]))
+  (model/update-row! table-key id blog-post))
 
 (defn delete-post [id]
-  (jdbc/delete! model/spec table-key ["id = ?" id]))
+  (model/delete-row! table-key id))
