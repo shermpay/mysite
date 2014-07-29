@@ -27,7 +27,7 @@
 (defn check-create-table [table]
   (jdbc/with-db-connection [_ spec]
     (if (not (check-table table))
-      (create-create table (get table-specs table)))))
+      (create-table table (get table-specs table)))))
 
 (defn select-* [table]
   {:pre (keyword? table)}

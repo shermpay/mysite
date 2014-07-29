@@ -6,7 +6,7 @@
             [hiccup.core :refer :all]
             [markdown.core :as markdown]
 
-            [mysite.models.blog :as blog-model]
+            [mysite.models :as model]
             [mysite.views.layout :as layout]))
 
 (def show-count 5)
@@ -44,7 +44,7 @@
   (layout/common
    [:title "Blog"
     :subtitle "Editing"]
-   (let [post (blog-model/select-id id)]
+   (let [post (model/select-id :blog id)]
     (form (first post)))))
 
 (defn new []

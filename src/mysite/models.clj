@@ -16,6 +16,7 @@
                              [:date :datetime]
                              [:version :int]
                              [:content :text]
+                             [:docs "varchar(255)"]
                              [:github "varchar(255)"]
                              [:tags "varchar(128)"]]})
 
@@ -33,7 +34,7 @@
 (defn check-create-table [table]
   (jdbc/with-db-connection [_ spec]
     (if (not (check-table table))
-      (create-create table (get table-specs table)))))
+      (create-table table (get table-specs table)))))
 
 (defn select-* [table]
   {:pre (keyword? table)}
