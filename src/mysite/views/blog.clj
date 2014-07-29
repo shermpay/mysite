@@ -11,15 +11,27 @@
 
 (def show-count 5)
 
+(defn blog-card [header content id date & {tags :tags edited :edited}]
+  [:div.content
+   [:div.content-header
+    [:h1 header]
+    [:div.meta-data
+     [:p
+      [:span.post-id "#" id " posted on "]
+      [:span.entry-date  date " "]
+      [:span.tags "Tags: " tags]]]]
+   [:hr]
+   [:p (markdown/md-to-html-string content)]])
+
 (defn view [& blog-posts]
   (layout/common
    [:title "Blog"
-    :subtitle "Function Objects"]
-   (map (fn [post] (layout/content-card (:title post)
-                                        (markdown/md-to-html-string (:content post))
-                                        (:id post)
-                                        (:entry_date post)
-                                        :tags (:tags post)))
+    :subtitle "Code blabbering"]
+   (map (fn [post] (blog-card (:title post)
+                              (:content post)
+                              (:id post)
+                              (:entry_date post)
+                              :tags (:tags post)))
         blog-posts)))
 
 (defn form [{id :id, blog-title :title, blog-content :content, tags :tags}]

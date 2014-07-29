@@ -38,7 +38,7 @@
          (side-menu-heading "Blog")
          (side-menu-item "Archive" "/blog")
          (side-menu-heading "Projects")
-         (side-menu-item "All" "#")
+         (side-menu-item "All" "/projects")
          (side-menu-heading "About Me")
          (side-menu-item "Technology" "#")
          (side-menu-item "Misc" "#")]]
@@ -58,29 +58,17 @@
         body]
        [:script {:type "text/javascript"} "SyntaxHighlighter.all()"]]]]]))
 
-(defn content-card [header content id date & {tags :tags edited :edited}]
-  [:div.content
-   [:div.content-header
-    [:h1 header]
-    [:div.meta-data
-     [:p
-      [:span.post-id "#" id " posted on "]
-      [:span.entry-date  date " "]
-      [:span.tags "Tags: " tags]]]]
-   [:hr]
-   [:p content]])
-
 (defn home [latest-post]
   (common
    [:title "Sherman Pay"
     :subtitle "Home of my [Blog | Portfolio]"]
    [:h2 "Latest Post"]
    [:hr]
-   (content-card (:title latest-post)
-               (markdown/md-to-html-string (:content latest-post))
-               (:id latest-post)
-               (:entry_date latest-post)
-               :tags (:tags latest-post))
+   ;; (content-card (:title latest-post)
+   ;;             (markdown/md-to-html-string (:content latest-post))
+   ;;             (:id latest-post)
+   ;;             (:entry_date latest-post)
+   ;;             :tags (:tags latest-post))
    (link-to "/blog" "More posts...")
    [:h2 "Latest Project"]
    [:hr]))

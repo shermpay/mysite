@@ -5,12 +5,20 @@
             [mysite.views.layout :as layout]
             [mysite.models :as model]
             [mysite.views.blog :as blog]
+            [mysite.views.projects :as projects]
             [mysite.config :as config]))
 
 (defn home []
-  (let [posts (model/select-*-desc :blog)]
+  (do
     (model/check-create-table :blog)
-    (layout/home (first posts))))
+    (let [posts (model/select-*-desc :blog)]
+     (layout/home (first posts)))))
+
+(defn projects []
+  (do
+    (model/check-create-table :projects)
+    (let [projs (model/select-*-desc :projects)]
+      (projects/view projs))))
 
 
 (defn dev []
@@ -22,7 +30,7 @@
 (defroutes home-routes
   (GET "/" [] (success (home)))
 
-  (GET "/projects" [] "hello")
+  (GET "/projects" [] (projects))
 
   ;; Errors
   (GET "/dev" [] (success (dev))))
