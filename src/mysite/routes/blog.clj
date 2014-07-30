@@ -32,11 +32,10 @@
   (if (config/user-validation :root username password)
     (let [post {:title title
                 :content content
-                :entry_date (java.util.Date.)
                 :tags tags}]
       (if id
-        (model/update-row! :blog id post)
-        (model/insert-row! post))
+        (model/update-row! :blog id (assoc post :edited (java.util.Date.)))
+        (model/insert-row! (assoc post :entry_date (java.util.Date.))))
       true)
     (let [msg "Error posting blog. Username/Password invalid."]
       (. System/err println msg)

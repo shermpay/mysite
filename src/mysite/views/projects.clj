@@ -37,24 +37,25 @@
     :subtitle "Code"]
    (map (fn [proj] (project-card proj)) projects)))
 
-(defn form [{:keys [id project-name project-content tags]}]
+(defn form [{:keys [id project-name project-content project-version tags]}]
   (form-to
    {:id "projects-post" :class "pure-form pure-form-stacked"} [:post "/projects/post"]
    [:div
     [:div
-    (hidden-field :id id)
-    (label :project-name "Project Name: ") (text-field :project-name project-name)
-    (label :project-content "Content: ")
-    (text-area {:rows "10" :cols "100"} :project-content project-content)
-    [:p#word-count " words"]
-    (label :tags "Tags: ") (text-area {:cols "60"} :tags tags)]
+     (hidden-field :id id)
+     (label :project-name "Project Name: ") (text-field :project-name project-name)
+     (label :project-version "Version: ") (text-field :project-version project-version)
+     (label :project-content "Content: ")
+     (text-area {:rows "10" :cols "100"} :project-content project-content)
+     [:p#word-count " words"]
+     (label :tags "Tags: ") (text-area {:cols "60"} :tags tags)]
     (label :docs "Documentation URL: ") (text-field :docs )
     [:div {:class "pure-group"}
      (label :username "Credentials")
      (text-field {:placeholder "username"} :username)
-     (password-field {:placeholder "password"})]
+     (password-field {:placeholder "password"} :password)]
     [:br]
-    (submit-button {:class "pure-button purebutton-primary"} "Post!")]))
+    (submit-button {:class "pure-button pure-button-primary"} "Post!")]))
 
 (defn new []
   (projects-common

@@ -7,10 +7,16 @@
             [compojure.route :as route]
             [mysite.routes.home :refer [home-routes]]
             [mysite.routes.blog :refer [blog-routes]]
-            [mysite.routes.projects :refer [projects-routes]]))
+            [mysite.routes.projects :refer [projects-routes]]
+            [mysite.models :as models]))
 
 (defn init []
-  (println "mysite is starting"))
+  (do
+    (println "mysite initializing")
+    (doseq [table (keys models/table-specs)]
+      (println "Checking/Creating table " table)
+      (models/check-create-table table))
+    (println "mysite is starting")))
 
 (defn destroy []
   (println "mysite is shutting down"))

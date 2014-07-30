@@ -25,7 +25,8 @@
      [:p
       [:span.post-id "#" id " posted on "]
       [:span.entry-date  date " "]
-      [:span.tags "Tags: " tags]]]]
+      (if edited [:span.edited-date "edited on " edited])
+      [:span.tags " tags: " tags]]]]
    [:hr]
    [:p (markdown/md-to-html-string content)]])
 
@@ -37,6 +38,7 @@
                               (:content post)
                               (:id post)
                               (:entry_date post)
+                              :edited (:edited post)
                               :tags (:tags post)))
         blog-posts)))
 
