@@ -11,10 +11,8 @@
   {:status 200, :headers {"Content-Type" "text/html"}, :body body})
 
 (defn view-projects []
-  (do
-    (model/check-create-table :projects)
-    (let [projs (model/select-*-desc :projects)]
-      (projects/view projs))))
+  (let [projs (model/select-*-desc :projects)]
+    (projects/view projs)))
 
 (defn new-project []
   (projects/new))
@@ -38,5 +36,5 @@
   (GET "/projects/new" [] (success-response (new-project)))
   (GET "/projects/edit" [id] (success-response (edit-project id)))
 
-  (POST "/projects/post" [id name content docs source tags username password]))
+  (POST "/projects/post" [id name content version docs source tags username password]))
   
