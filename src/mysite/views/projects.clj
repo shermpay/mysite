@@ -7,23 +7,24 @@
             [markdown.core :as markdown]
 
             [mysite.models :as model]
-            [mysite.views.layout :as layout]))
+            [mysite.views.layout :as layout]
+            [mysite.util :as util]))
 
-(defn project-card [{:keys [name content id version date docs source tags]}]
+(defn project-card [{:keys [name content id version start_date new_date docs source tags]}]
   [:div.content
    [:div.content-header
     [:h1 name]
-    [:h2 "Ver: " version]
+    [:span [:h2 version] [:h3 " " (util/truncate-timestamp new_date :second)]]
     [:div.meta-data
      [:p
       [:span.project-id "#" id]
-      [:span.project-date date]
+      [:span.project-date (util/truncate-timestamp start_date :second)]
       [:span.tags "Tags: " tags]]]
     [:hr]
     [:p (markdown/md-to-html-string content)]
     [:span
-     [:a [:href source] "Source "]
-     [:a [:href docs] " Documentation"]]]])
+     [:a [:href docs] " Documentation" docs]
+     [:a [:href source] "Source " source]]]])
 
 (defn projects-common [header & body]
   (layout/common
@@ -31,25 +32,27 @@
    (include-css "content.css")
    body))
 
-(defn view [& projects]
+(defn view [projects]
   (projects-common
    [:title "Projects"
     :subtitle "Code"]
+   (println projects)
    (map (fn [proj] (project-card proj)) projects)))
 
-(defn form [{:keys [id project-name project-content project-version tags]}]
+(defn form [{:keys [id name content version tags docs source]}]
   (form-to
    {:id "projects-post" :class "pure-form pure-form-stacked"} [:post "/projects/post"]
    [:div
     [:div
      (hidden-field :id id)
-     (label :project-name "Project Name: ") (text-field :project-name project-name)
-     (label :project-version "Version: ") (text-field :project-version project-version)
+     (label :project-name "Project Name: ") (text-field :project-name name)
+     (label :project-version "Version: ") (text-field :project-version version)
      (label :project-content "Content: ")
-     (text-area {:rows "10" :cols "100"} :project-content project-content)
+     (text-area {:rows "10" :cols "100"} :project-content content)
      [:p#word-count " words"]
      (label :tags "Tags: ") (text-area {:cols "60"} :tags tags)]
-    (label :docs "Documentation URL: ") (text-field :docs )
+    (label :docs "Documentation URL: ") (text-field :docs docs)
+    (label :source "Source URL: ") (text-field :source source)
     [:div {:class "pure-group"}
      (label :username "Credentials")
      (text-field {:placeholder "username"} :username)
@@ -62,3 +65,9 @@
    [:title "Projects"
     :subtitle "defproject"]
    (form {})))
+
+(defn edit [id]
+  (projects-common
+   [:title "Projects"
+    :subtitle "(set! project)"]
+   (form (first (model/select-id :projects id)))))

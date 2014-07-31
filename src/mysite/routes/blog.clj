@@ -13,13 +13,11 @@
 (defn view-blog
   ([]
      (let [posts (model/select-*-desc :blog)]
-       (model/check-create-table :blog)
        (apply blog/view (take blog/show-count posts))))
   ([success]
      (let [msg (if (boolean success) "\"Post success!\"" "\"Failed to post.\"")
            posts (model/select-*-desc :blog)]
-       (model/check-create-table :blog)
-       (str "<script>alert(" msg ")</script>"
+       (str "<script>alert(" msg ")</script> "
             (apply blog/view (take blog/show-count posts))))))
 
 (defn new-blog []
@@ -33,9 +31,9 @@
     (let [post {:title title
                 :content content
                 :tags tags}]
-      (if id
-        (model/update-row! :blog id (assoc post :edited (java.util.Date.)))
-        (model/insert-row! (assoc post :entry_date (java.util.Date.))))
+      (if (empty? id)
+        (model/insert-row! :blog (assoc post :entry_date (java.util.Date.)))
+        (model/update-row! :blog id (assoc post :edited (java.util.Date.))))
       true)
     (let [msg "Error posting blog. Username/Password invalid."]
       (. System/err println msg)

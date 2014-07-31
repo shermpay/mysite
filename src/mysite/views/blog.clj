@@ -7,7 +7,8 @@
             [markdown.core :as markdown]
 
             [mysite.models :as model]
-            [mysite.views.layout :as layout]))
+            [mysite.views.layout :as layout]
+            [mysite.util :as util]))
 
 (def show-count 5)
 
@@ -24,8 +25,9 @@
     [:div.blog-meta
      [:p
       [:span.post-id "#" id " posted on "]
-      [:span.entry-date  date " "]
-      (if edited [:span.edited-date "edited on " edited])
+      [:span.entry-date  (util/truncate-timestamp date :second) " "]
+      (if edited [:span.edited-date "edited on "
+                  (util/truncate-timestamp edited :second)])
       [:span.tags " tags: " tags]]]]
    [:hr]
    [:p (markdown/md-to-html-string content)]])
@@ -34,6 +36,7 @@
   (blog-common
    [:title "Blog"
     :subtitle "Code blabbering"]
+   (println blog-posts)
    (map (fn [post] (blog-card (:title post)
                               (:content post)
                               (:id post)

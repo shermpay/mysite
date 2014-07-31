@@ -10,31 +10,50 @@
 (defn- success-response [body]
   {:status 200, :headers {"Content-Type" "text/html"}, :body body})
 
-(defn view-projects []
-  (let [projs (model/select-*-desc :projects)]
-    (projects/view projs)))
+(defn view-projects
+  ([]
+     (let [projs (model/select-*-desc :projects)]
+       (str "<script>alert('hello')</script>"
+        (projects/view projs))))
+  ([success]
+     (let [msg (if (boolean success) "\"Post success!\"" "\"Failed to post.\"")]
+       (let [projs (model/select-*-desc :projects)]
+         (str "<script>alert(" msg ")</script> "
+              (projects/view projs))))))
 
 (defn new-project []
   (projects/new))
 
-(defn edit-project [id] '())
+(defn edit-project [id]
+  (projects/edit id))
 
 (defn post-project [id name content version docs source tags username password]
   (if (config/user-validation :root username password)
     (let [project {:name name
                    :content content
                    :version version
+                   :new_date (java.util.Date.)
                    :docs docs
                    :source source
                    :tags tags}]
-      (if id
-        (model/update-row! :projects id (assoc project :new-date (java.util.Date.)))
-        (model/insert-row! (assoc project :start-date (java.util.Date.)))))))
+      (if (empty? id)
+        (model/insert-row! :projects (assoc project :start_date (java.util.Date.)))
+        (model/update-row! :projects id project))
+      true)
+    (let [msg "Error posting project. Username/Password invalid."]
+      (. System/err println msg)
+      false)))
 
 (defroutes projects-routes
   (GET "/projects" [] (success-response (view-projects)))
+  (GET "/projects" [success] (success-response (view-projects success)))
   (GET "/projects/new" [] (success-response (new-project)))
   (GET "/projects/edit" [id] (success-response (edit-project id)))
 
-  (POST "/projects/post" [id name content version docs source tags username password]))
+  (POST "/projects/post" [id project-name project-content project-version
+                          docs source tags username password]
+        (if (post-project id project-name project-content project-version
+                          docs source tags username password)
+          {:status 302, :headers {"Location" "/projects?success=true"}}
+          {:status 302, :headers {"Location" "/projects?success=true"}})))
   

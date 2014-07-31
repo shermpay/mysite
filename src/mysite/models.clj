@@ -1,6 +1,7 @@
 (ns mysite.models
   (:require [clojure.java.jdbc :as jdbc]
-            [mysite.config :as config]))
+            [mysite.config :as config]
+            [mysite.util :as util]))
 
 
 (def spec (:database-spec config/*credentials*))
@@ -14,9 +15,9 @@
 
                   :projects [[:id :int :primary :key :auto_increment]
                              [:name "varchar(64)"]
-                             [:start-date :datetime]
-                             [:version :int]
-                             [:new-date :datetime]
+                             [:start_date :datetime]
+                             [:version "varchar(32)"]
+                             [:new_date :datetime]
                              [:content :text]
                              [:docs "varchar(255)"]
                              [:source "varchar(255)"]
@@ -27,11 +28,16 @@
   (let [tables (jdbc/query spec [(str "show tables like '" (name table) "'")])]
     (= 1 (count tables))))
 
-(defn create-table [table [table-spec]]
+(defn describe-table [table]
+  {:pre (keyword? table)}
+  (jdbc/query spec [(str "describe " (name table))]))
+
+(defn create-table [table]
+  {:pre (keyword? table)}
   (jdbc/db-do-commands
    spec
-   (jdbc/create-table-ddl table
-                          table-spec)))
+   (let [table-spec (table table-specs)]
+       (apply (partial jdbc/create-table-ddl table) table-spec))))
 
 (defn check-create-table [table]
   (jdbc/with-db-connection [_ spec]
