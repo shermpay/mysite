@@ -205,14 +205,26 @@ small screens.
     }
 }
 
-@media (max-device-width: 48em) {
+@media only screen
+and (min-device-width: 320px)
+and (max-device-width: 480px) {
     body {
-	font-size: 28pt;
+	font-size: 3em;
     }
 
-   .menu-link.active {
+    #sideMenu.active {
+	font-size: 0.8em;
+	margin-left: 8em;
+	width: 13.0em;
+    }
+
+    .menu-link {
+	font-size: 1em;
+    }
+
+    .menu-link.active {
 	left: 0em;
-   }
+    }
 }
 
 /* Others */

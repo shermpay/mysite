@@ -35,13 +35,9 @@
         [:a {:href "/"} [:h2 "(main)"]]]
         [:hr]
         [:ul#sideMenuItem
-         (side-menu-heading "Blog")
-         (side-menu-item "Archive" "/blog")
-         (side-menu-heading "Projects")
-         (side-menu-item "All" "/projects")
-         (side-menu-heading "About Me")
-         (side-menu-item "Technology" "#")
-         (side-menu-item "Misc" "#")]]
+         (side-menu-item "Blog" "/blog")
+         (side-menu-item "Projects" "/projects")
+         (side-menu-item "About Me" "/about")]]
 
        [:div {:id "sideMenuContact" :class "pure-menu pure-menu-open"}
         [:ul#contact
