@@ -16,7 +16,7 @@
     [:head
      [:title "Sherman Pay's Website"]
      (include-css "http://yui.yahooapis.com/pure/0.5.0/pure-min.css"
-                  "/css/index.css"
+                  "/css/common.css"
                   "/css/sh/shCore.css"
                   "/css/sh/shCoreEmacs.css"
                   "/css/sh/shThemeEmacs.css")
@@ -56,8 +56,8 @@
 
 (defn home [latest-post]
   (common
-   [:title "Sherman Pay"
-    :subtitle "Home of my [Blog | Portfolio]"]
+   [:title "Home"
+    :subtitle "of my [Blog | Portfolio]"]
    [:h2 "Latest Post"]
    [:hr]
    ;; (content-card (:title latest-post)

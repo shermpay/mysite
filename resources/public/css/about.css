@@ -1,0 +1,35 @@
+/* About me */
+.content {
+    background: #fff;
+    padding: 18pt 40pt 18pt 40pt;
+    margin: 2em;
+}
+
+#headText {
+    max-width: 30em;
+}
+
+#mainContent {
+    max-width: 40em;
+}
+
+#spectrum {
+}
+
+#spectrum-line {
+    margin-bottom: 0.5em;
+}
+
+#spectrum-left {
+    float: left;
+}
+
+.spectrum-rest {
+    visibility: hidden;
+    background-color: red;
+    color: red;
+}
+
+#spectrum-right {
+    float: right;
+}

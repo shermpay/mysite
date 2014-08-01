@@ -101,7 +101,7 @@ body {
 
 #headText {
     margin: 2em auto 0 auto;
-    max-width: 48em;
+    max-width: 44em;
 }
 
 hr {
@@ -110,7 +110,7 @@ hr {
 
 #mainContent {
     margin: 0 auto 1em;
-    max-width: 56em;
+    max-width: 52em;
     padding-top: 1em;
     padding-left: 3em;
     padding-right: 3em;
@@ -212,10 +212,18 @@ and (max-device-width: 480px) {
 	font-size: 3em;
     }
 
+    #mainContent {
+	padding: 0.6em;
+    }
+
     #sideMenu.active {
 	font-size: 0.8em;
 	margin-left: 8em;
 	width: 13.0em;
+    }
+
+    #sideMenu li {
+	padding-top: 1em;
     }
 
     .menu-link {
@@ -227,8 +235,35 @@ and (max-device-width: 480px) {
     }
 }
 
-/* Others */
+/* Fancy Stuff */
 .syntaxhighlighter {
     padding: 0.5em;
     max-width: 92%;
+}
+
+/* Tags Style */
+.tag {
+    margin: 1em;
+    margin-left: 0;
+}
+
+#clojure {
+    font-weight: bold;
+    background-color: #2ecc71;
+    color: #fff;
+    padding: 0.2em 0.6em 0.2em 0.6em;
+}
+
+#python {
+    background-color: #0a60aa;
+    color: #FFE700;
+    font-weight: bold;
+    padding: 0.2em 0.6em 0.2em 0.6em;
+}
+
+#java {
+    background-color: #ff3434;
+    color: #fff;
+    padding: 0.2em 0.6em 0.2em 0.6em;
+    font-weight: bold;
 }

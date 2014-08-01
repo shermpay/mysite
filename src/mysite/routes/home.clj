@@ -6,20 +6,15 @@
             [mysite.models :as model]
             [mysite.views.blog :as blog]
             [mysite.views.projects :as projects]
+            [mysite.views.about :as about]
             [mysite.config :as config]))
 
 (defn home []
-  (do
-    (model/check-create-table :blog)
-    (let [posts (model/select-*-desc :blog)]
-     (layout/home (first posts)))))
+  (let [posts (model/select-*-desc :blog)]
+    (layout/home (first posts))))
 
-(defn projects []
-  (do
-    (model/check-create-table :projects)
-    (let [projs (model/select-*-desc :projects)]
-      (projects/view projs))))
-
+(defn about []
+  (about/about))
 
 (defn dev []
   (layout/dev))
@@ -29,4 +24,5 @@
 
 (defroutes home-routes
   (GET "/" [] (success (home)))
+  (GET "/about" [] (success (about)))
   (GET "/dev" [] (success (dev))))
