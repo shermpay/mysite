@@ -15,9 +15,10 @@
 
                   :projects [[:id :int :primary :key :auto_increment]
                              [:name "varchar(64)"]
-                             [:start_date :datetime]
                              [:version "varchar(32)"]
+                             [:start_date :datetime]
                              [:new_date :datetime]
+                             [:description :text]
                              [:content :text]
                              [:docs "varchar(255)"]
                              [:source "varchar(255)"]

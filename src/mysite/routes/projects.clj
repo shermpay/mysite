@@ -13,13 +13,11 @@
 (defn view-projects
   ([]
      (let [projs (model/select-*-desc :projects)]
-       (str "<script>alert('hello')</script>"
-        (projects/view projs))))
+       (projects/view projs)))
   ([success]
      (let [msg (if (boolean success) "\"Post success!\"" "\"Failed to post.\"")]
        (let [projs (model/select-*-desc :projects)]
-         (str "<script>alert(" msg ")</script> "
-              (projects/view projs))))))
+         (projects/view projs)))))
 
 (defn new-project []
   (projects/new))
@@ -27,9 +25,11 @@
 (defn edit-project [id]
   (projects/edit id))
 
-(defn post-project [id name content version docs source tags username password]
+
+(defn post-project [id name description content version docs source tags username password]
   (if (config/user-validation :root username password)
     (let [project {:name name
+                   :description description
                    :content content
                    :version version
                    :new_date (java.util.Date.)
@@ -50,10 +50,10 @@
   (GET "/projects/new" [] (success-response (new-project)))
   (GET "/projects/edit" [id] (success-response (edit-project id)))
 
-  (POST "/projects/post" [id project-name project-content project-version
-                          docs source tags username password]
-        (if (post-project id project-name project-content project-version
-                          docs source tags username password)
+  (POST "/projects/post" [id project-name project-description project-content 
+                          project-version docs source tags username password]
+        (if (post-project id project-name project-description project-content
+                          project-version docs source tags username password)
           {:status 302, :headers {"Location" "/projects?success=true"}}
           {:status 302, :headers {"Location" "/projects?success=true"}})))
   

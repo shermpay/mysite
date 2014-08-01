@@ -10,26 +10,27 @@
             [mysite.views.layout :as layout]
             [mysite.util :as util]))
 
-(defn project-card [{:keys [name content id version start_date new_date docs source tags]}]
-  [:div.content
-   [:div.content-header
+(defn project-card [{:keys [name description id version start_date new_date docs source tags]}]
+  [:div.project
+   [:div.project-header
     [:h1 name]
-    [:span [:h2 version] [:h3 " " (util/truncate-timestamp new_date :second)]]
+    [:span [:h2 " Version: " version " " (util/truncate-timestamp new_date :hour)]]]
+   [:div.project-key
+    [:div.project-description (markdown/md-to-html-string description)]
+    [:hr {:style "margin-bottom: 0.1em;"}]
+    [:span [:a {:href docs} "Documentation"]]
+    [:span {:style "visibility: hidden;"} "foo"]
+    [:span [:a {:href source} "Source"]]
     [:div.meta-data
-     [:p
+     [:div.project-time
       [:span.project-id "#" id]
-      [:span.project-date (util/truncate-timestamp start_date :second)]
-      [:span.tags "Tags: " tags]]]
-    [:hr]
-    [:p (markdown/md-to-html-string content)]
-    [:span
-     [:a [:href docs] " Documentation" docs]
-     [:a [:href source] "Source " source]]]])
+      [:span.project-date " posted on: " (util/truncate-timestamp start_date :second) " "]]
+     [:span.tags "Tags: " tags]]]]) 
 
 (defn projects-common [header & body]
   (layout/common
    header
-   (include-css "content.css")
+   (include-css "css/content.css")
    body))
 
 (defn view [projects]
@@ -39,7 +40,7 @@
    (println projects)
    (map (fn [proj] (project-card proj)) projects)))
 
-(defn form [{:keys [id name content version tags docs source]}]
+(defn form [{:keys [id name description content version tags docs source]}]
   (form-to
    {:id "projects-post" :class "pure-form pure-form-stacked"} [:post "/projects/post"]
    [:div
@@ -47,8 +48,9 @@
      (hidden-field :id id)
      (label :project-name "Project Name: ") (text-field :project-name name)
      (label :project-version "Version: ") (text-field :project-version version)
+     (label :project-description "Description: ") (text-area {:cols "100"} :project-description description)
      (label :project-content "Content: ")
-     (text-area {:rows "10" :cols "100"} :project-content content)
+     (text-area {:rows "15" :cols "100"} :project-content content)
      [:p#word-count " words"]
      (label :tags "Tags: ") (text-area {:cols "60"} :tags tags)]
     (label :docs "Documentation URL: ") (text-field :docs docs)

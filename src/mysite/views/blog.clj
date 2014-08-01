@@ -15,7 +15,7 @@
 (defn blog-common [header & body]
   (layout/common
    header
-   (include-css "content.css")
+   (include-css "css/content.css")
    body))
 
 (defn blog-card [header content id date & {tags :tags edited :edited}]
@@ -36,7 +36,6 @@
   (blog-common
    [:title "Blog"
     :subtitle "Code blabbering"]
-   (println blog-posts)
    (map (fn [post] (blog-card (:title post)
                               (:content post)
                               (:id post)
@@ -53,7 +52,7 @@
      (hidden-field :id id)
      (label :blog-title "Blog Title: ") (text-field :blog-title blog-title)
      (label :blog-content "Blog Entry: ")
-     (text-area {:rows "10" :cols "100"} :blog-content blog-content)
+     (text-area {:rows "20" :cols "100"} :blog-content blog-content)
      [:p#word-count  " words"]
      (label :tags "Tags: ") (text-area {:cols "60"} :tags tags)]
     [:div {:class "pure-group", :style ""}

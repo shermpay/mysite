@@ -12,3 +12,35 @@
 .blog .blog-title .blog-meta .tags {
     float: right;
 }
+
+.project {
+    padding: 0.5em 2em 0.5em 2em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    background: #fff;
+    overflow: auto;
+    font-size: 0.8em;
+}
+
+.project-header {
+    float: left;
+    max-width: 32em;
+}
+
+.project-key {
+    float: right;
+    max-width: 42em;
+}
+
+.project-key .project-description {
+    height: 4.0em;
+}
+
+.project .meta-data {
+    float: right;
+    max-width: 40em;
+}
+
+.project .meta-data .tags {
+    float: right;
+}
