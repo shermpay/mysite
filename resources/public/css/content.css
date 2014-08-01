@@ -6,6 +6,10 @@
     background: #fff;
 }
 
+.blog-meta {
+    color: #1abc9c;
+}
+
 .blog .blog-title .blog-meta {
     font-size: 0.8em;
 }

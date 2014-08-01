@@ -4,6 +4,7 @@
             [compojure.route :as route]
             [mysite.views.layout :as layout]
             [mysite.models :as model]
+            [mysite.views.home :as home]
             [mysite.views.blog :as blog]
             [mysite.views.projects :as projects]
             [mysite.views.about :as about]
@@ -11,7 +12,7 @@
 
 (defn home []
   (let [posts (model/select-*-desc :blog)]
-    (layout/home (first posts))))
+    (home/home (first posts))))
 
 (defn about []
   (about/about))

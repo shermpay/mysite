@@ -83,11 +83,15 @@ body {
     font-size: smaller; 
 }
 
+#contact li a:hover {
+    background-color: #fff;
+    color: #1abc9c; 
+    text-decoration: underline;
+}
+
 #main {
     /* border: red solid 2px; */
 }
-
-
 
 #mainHead {
     font-size: 0.7em;
@@ -116,6 +120,18 @@ hr {
     padding-right: 3em;
     font-size: 0.6em;
     /* border: green solid 2px; */
+}
+
+#mainFoot {
+    padding: 0.8em;
+    padding-left: 1.5em;
+    font-size: 0.4em;
+    color: #000;
+    background-color: #444;
+}
+
+a {
+    color: #2ecc71;
 }
 
 /* Custom Button for side-menu *//* -- Dynamic Button For Responsive Menu -------------------------------------*/

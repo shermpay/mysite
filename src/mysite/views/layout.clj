@@ -10,10 +10,8 @@
 (defn- side-menu-item [text link]
   [:li [:a {:href link} text]])
 
-(defn common [[:title title, :subtitle subtitle] & body]
-  (html5
-   [:html
-    [:head
+(defn head []
+  [:head
      [:title "Sherman Pay's Website"]
      (include-css "http://yui.yahooapis.com/pure/0.5.0/pure-min.css"
                   "/css/common.css"
@@ -23,9 +21,10 @@
      (include-js "/js/main.js"
                  "/js/sh/shCore.js"
                  "/js/sh/shBrushJava.js")
-     [:link {:rel "icon", :type "image/ico", :href "/img/icons/favicon.ico"}]]
+     [:link {:rel "icon", :type "image/ico", :href "/img/icons/favicon.ico"}]])
 
-    [:body
+(defn common-body [title subtitle & body]
+  [:body
      [:div#general
       [:a {:id "menuLink", :class "menu-link", :href "#"} [:span]]
 
@@ -40,9 +39,10 @@
          (side-menu-item "About Me" "/about")]]
 
        [:div {:id "sideMenuContact" :class "pure-menu pure-menu-open"}
+        [:hr]
         [:ul#contact
-         [:li.contact "Gmail: " [:a {:href "mailto:shermanpay1991@gmail.com"} "shermanpay1991"]]
-         [:li.contact "Github: " [:a {:href "https://github.com/shermpay"} "shermpay"]]]]]
+         [:li.contact  [:a {:href "mailto:shermanpay1991@gmail.com"} "Gmail"]]
+         [:li.contact  [:a {:href "https://github.com/shermpay"} "Github"]]]]]
 
       [:div#main
        [:div#mainHead
@@ -52,22 +52,21 @@
        [:hr]
        [:div#mainContent
         body]
-       [:script {:type "text/javascript"} "SyntaxHighlighter.all()"]]]]]))
+       [:script {:type "text/javascript"} "SyntaxHighlighter.all()"]]]])
 
-(defn home [latest-post]
-  (common
-   [:title "Home"
-    :subtitle "of my [Blog | Portfolio]"]
-   [:h2 "Latest Post"]
-   [:hr]
-   ;; (content-card (:title latest-post)
-   ;;             (markdown/md-to-html-string (:content latest-post))
-   ;;             (:id latest-post)
-   ;;             (:entry_date latest-post)
-   ;;             :tags (:tags latest-post))
-   (link-to "/blog" "More posts...")
-   [:h2 "Latest Project"]
-   [:hr]))
+(defn foot []
+  [:div#mainFoot
+   [:p "Copyright © 2014. Sherman Pay Jing Hao."]])
+
+(defn common [[:title title, :subtitle subtitle] & body]
+  (html5
+   [:html
+    (head)
+    (common-body title subtitle body)
+    (foot)]))
+
+
+
 
 (defn dev []
   (common

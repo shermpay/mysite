@@ -28,7 +28,7 @@
       [:span.entry-date  (util/truncate-timestamp date :second) " "]
       (if edited [:span.edited-date "edited on "
                   (util/truncate-timestamp edited :second)])
-      [:span.tags " tags: " tags]]]]
+      [:span.tags tags]]]]
    [:hr]
    [:p (markdown/md-to-html-string content)]])
 
