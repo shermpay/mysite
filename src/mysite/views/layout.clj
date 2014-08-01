@@ -23,6 +23,10 @@
                  "/js/sh/shBrushJava.js")
      [:link {:rel "icon", :type "image/ico", :href "/img/icons/favicon.ico"}]])
 
+(defn foot []
+  [:div#mainFoot
+   [:div "Copyright © 2014. Sherman Pay Jing Hao."]])
+
 (defn common-body [title subtitle & body]
   [:body
      [:div#general
@@ -41,8 +45,9 @@
        [:div {:id "sideMenuContact" :class "pure-menu pure-menu-open"}
         [:hr]
         [:ul#contact
-         [:li.contact  [:a {:href "mailto:shermanpay1991@gmail.com"} "Gmail"]]
-         [:li.contact  [:a {:href "https://github.com/shermpay"} "Github"]]]]]
+         [:li.contact [:a {:href "mailto:shermanpay1991@gmail.com"} "Gmail"]]
+         [:li.contact [:a {:href "https://github.com/shermpay"} "Github"]]
+         [:li.contact [:a {:href "misc/resume.pdf"} "Résumé"]]]]]
 
       [:div#main
        [:div#mainHead
@@ -52,21 +57,15 @@
        [:hr]
        [:div#mainContent
         body]
+       (foot)
        [:script {:type "text/javascript"} "SyntaxHighlighter.all()"]]]])
 
-(defn foot []
-  [:div#mainFoot
-   [:p "Copyright © 2014. Sherman Pay Jing Hao."]])
 
 (defn common [[:title title, :subtitle subtitle] & body]
   (html5
    [:html
     (head)
-    (common-body title subtitle body)
-    (foot)]))
-
-
-
+    (common-body title subtitle body)]))
 
 (defn dev []
   (common

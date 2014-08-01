@@ -13,18 +13,19 @@
             [mysite.views.about :as about]
             [mysite.util :as util]))
 
-(defn home [latest-post]
+(defn home [blog-post]
   (layout/common
    [:title "Home"
     :subtitle "of my [Blog | Portfolio]"]
    (include-css "css/content.css")
    [:h2 "Latest Post"]
    [:hr]
-   (blog/blog-card (:title latest-post)
-                   (markdown/md-to-html-string (:content latest-post))
-                   (:id latest-post)
-                   (:entry_date latest-post)
-                   :tags (:tags latest-post))
+   (if (seq blog-post)
+    (blog/blog-card (:title blog-post)
+                    (markdown/md-to-html-string (:content blog-post))
+                    (:id blog-post)
+                    (:entry_date blog-post)
+                    :tags (:tags blog-post)))
    (link-to "/blog" "More posts...")
    [:h2 "About Me"]
    [:hr]

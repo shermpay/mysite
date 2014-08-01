@@ -37,7 +37,6 @@
   (projects-common
    [:title "Projects"
     :subtitle "Code"]
-   (println projects)
    (map (fn [proj] (project-card proj)) projects)))
 
 (defn form [{:keys [id name description content version tags docs source]}]
