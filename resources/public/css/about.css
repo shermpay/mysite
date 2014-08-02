@@ -2,11 +2,12 @@
 .content {
     background: #fff;
     padding: 18pt 40pt 18pt 40pt;
-    margin: 2em;
+    margin-top: 2em;
+    margin-bottom: 2em;
 }
 
 #headText {
-    max-width: 30em;
+    max-width: 32em;
 }
 
 #mainContent {

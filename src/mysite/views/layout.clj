@@ -12,16 +12,17 @@
 
 (defn head []
   [:head
-     [:title "Sherman Pay's Website"]
-     (include-css "http://yui.yahooapis.com/pure/0.5.0/pure-min.css"
-                  "/css/common.css"
-                  "/css/sh/shCore.css"
-                  "/css/sh/shCoreEmacs.css"
-                  "/css/sh/shThemeEmacs.css")
-     (include-js "/js/main.js"
-                 "/js/sh/shCore.js"
-                 "/js/sh/shBrushJava.js")
-     [:link {:rel "icon", :type "image/ico", :href "/img/icons/favicon.ico"}]])
+   [:title "Sherman Pay's Website"]
+   (include-css "http://yui.yahooapis.com/pure/0.5.0/pure-min.css"
+                "/css/common.css"
+                "/css/sh/shCore.css"
+                "/css/sh/shCoreEmacs.css"
+                "/css/sh/shThemeEmacs.css")
+   (include-js "/js/main.js"
+               "/js/sh/shCore.js"
+               "/js/sh/shBrushJava.js")
+   [:link {:rel "icon", :type "image/ico", :href "/img/icons/favicon.ico"}]
+   [:meta {:http-equiv "Content-Type" :content "text/html;charset=utf-16"}]])
 
 (defn foot []
   [:div#mainFoot
@@ -35,14 +36,14 @@
       [:div#sideMenu
        [:div {:id "sideMenuTop", :class "pure-menu pure-menu-open"}
        [:div#home
-        [:a {:href "/"} [:h2 "(main)"]]]
+        [:a {:href "/"} [:h2 "白"]]]
         [:hr]
         [:ul#sideMenuItem
          (side-menu-item "Blog" "/blog")
          (side-menu-item "Projects" "/projects")
          (side-menu-item "About Me" "/about")]]
 
-       [:div {:id "sideMenuContact" :class "pure-menu pure-menu-open"}
+       [:div {:id "sideMenuContact" :class ""}
         [:hr]
         [:ul#contact
          [:li.contact [:a {:href "mailto:shermanpay1991@gmail.com"} "Gmail"]]
@@ -57,8 +58,9 @@
        [:hr]
        [:div#mainContent
         body]
-       (foot)
-       [:script {:type "text/javascript"} "SyntaxHighlighter.all()"]]]])
+       (foot)]]
+   [:div#mask]
+   [:script {:type "text/javascript"} "SyntaxHighlighter.all()"]])
 
 
 (defn common [[:title title, :subtitle subtitle] & body]
@@ -70,15 +72,9 @@
 (defn dev []
   (common
    [:div.content
-    [:h2 "Beta"]
-    (unordered-list ["Simple UI Design."
-                     "MySQL database to store Blog Posts."
-                     "Blog pulled directly from DB"
-                     "Blog post written in markdown. (Use markdown-clj)"])]
-   [:div.content
     [:h2 "Current"]
-    (unordered-list ["Project hosting"
-                     "Project database"])]
+    (unordered-list ["Document It"
+                     "Quality Assurance"])]
 
    [:div.content
     [:h2 "Future"]

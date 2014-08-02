@@ -25105,15 +25105,19 @@ mysite.core.toggle_class = function toggle_class(element, name) {
   return console.log(classes);
 };
 mysite.core.init = function init() {
-  var general = document.getElementById("general");
+  var main = document.getElementById("main");
   var side_menu = document.getElementById("sideMenu");
   var menu_link = document.getElementById("menuLink");
-  return menu_link.onclick = function(general, side_menu, menu_link) {
+  var mask = document.getElementById("mask");
+  return menu_link.onclick = function(main, side_menu, menu_link, mask) {
     return function(e) {
-      mysite.core.toggle_class.call(null, general, "active");
+      mysite.core.toggle_class.call(null, main, "active");
       mysite.core.toggle_class.call(null, side_menu, "active");
-      return mysite.core.toggle_class.call(null, menu_link, "active");
+      mysite.core.toggle_class.call(null, menu_link, "active");
+      return mysite.core.toggle_class.call(null, mask, "active");
     };
-  }(general, side_menu, menu_link);
+  }(main, side_menu, menu_link, mask);
 };
 window.onload = mysite.core.init;
+goog.provide("mysite.blog");
+goog.require("cljs.core");

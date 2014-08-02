@@ -17,14 +17,15 @@
     (.log js/console classes)))
 
 (defn init []
-  (let [general (.getElementById js/document "general")
+  (let [main (.getElementById js/document "main")
         side-menu (.getElementById js/document "sideMenu")
-        menu-link (.getElementById js/document "menuLink")]
+        menu-link (.getElementById js/document "menuLink")
+        mask (.getElementById js/document "mask")]
     (set! (.-onclick menu-link)
           (fn [e]
-            (toggle-class general "active")
+            (toggle-class main "active")
             (toggle-class side-menu "active")
-            (toggle-class menu-link "active")))))
-
+            (toggle-class menu-link "active")
+            (toggle-class mask "active")))))
 
 (set! (.-onload js/window) init)
