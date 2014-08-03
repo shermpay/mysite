@@ -21,7 +21,7 @@
   (layout/dev))
 
 (defn success [body]
-  {:status 200, :headers {"Content-Type" "text/html; charset=utf-16"}, :body body})
+  {:status 200, :headers {"Content-Type" "text/html; charset=utf-8"}, :body body})
 
 (defroutes home-routes
   (GET "/" [] (success (home)))
