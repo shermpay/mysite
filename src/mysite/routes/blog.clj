@@ -5,10 +5,8 @@
             [mysite.views.layout :as layout]
             [mysite.models :as model]
             [mysite.views.blog :as blog]
-            [mysite.config :as config]))
-
-(defn- success-response [body]
-  {:status 200, :headers {"Content-Type" "text/html"}, :body body})
+            [mysite.config :as config]
+            [mysite.routes.util :as util]))
 
 (defn view-blog
   ([]
@@ -40,10 +38,10 @@
       false)))
 
 (defroutes blog-routes
-  (GET "/blog" [] (success-response (view-blog)))
-  (GET "/blog" [success] (success-response (view-blog success)))
-  (GET "/blog/new" [] (success-response (new-blog)))
-  (GET "/blog/edit" [id] (success-response (edit-blog id)))
+  (GET "/blog" [] (util/success (view-blog)))
+  (GET "/blog" [success] (util/success (view-blog success)))
+  (GET "/blog/new" [] (util/success (new-blog)))
+  (GET "/blog/edit" [id] (util/success (edit-blog id)))
   (POST "/blog/post" [id blog-title blog-content tags username password]
         (if (post-blog id blog-title blog-content tags username password)
           {:status 302, :headers {"Location" "/blog?success=true"}}

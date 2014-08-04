@@ -5,10 +5,8 @@
             [mysite.views.layout :as layout]
             [mysite.models :as model]
             [mysite.views.projects :as projects]
-            [mysite.config :as config]))
-
-(defn- success-response [body]
-  {:status 200, :headers {"Content-Type" "text/html"}, :body body})
+            [mysite.config :as config]
+            [mysite.routes.util :as util]))
 
 (defn view-projects
   ([]
@@ -45,15 +43,17 @@
       false)))
 
 (defroutes projects-routes
-  (GET "/projects" [] (success-response (view-projects)))
-  (GET "/projects" [success] (success-response (view-projects success)))
-  (GET "/projects/new" [] (success-response (new-project)))
-  (GET "/projects/edit" [id] (success-response (edit-project id)))
+  (GET "/projects" [] (util/success (view-projects)))
+  (GET "/projects" [success] (util/success (view-projects success)))
+  (GET "/projects/new" [] (util/success (new-project)))
+  (GET "/projects/edit" [id] (util/success (edit-project id)))
 
   (POST "/projects/post" [id project-name project-description project-content 
                           project-version docs source tags username password]
         (if (post-project id project-name project-description project-content
                           project-version docs source tags username password)
-          {:status 302, :headers {"Location" "/projects?success=true"}}
-          {:status 302, :headers {"Location" "/projects?success=true"}})))
+          {:status 302, :headers {"Content-Type" "text/html; charset=utf-8"
+                                  "Location" "/projects?success=true"}}
+          {:status 302, :headers {"Content-type" "text/html; charset=utf-8"
+                                  "Location" "/projects?success=true"}})))
   

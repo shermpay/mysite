@@ -8,7 +8,8 @@
             [mysite.views.blog :as blog]
             [mysite.views.projects :as projects]
             [mysite.views.about :as about]
-            [mysite.config :as config]))
+            [mysite.config :as config]
+            [mysite.routes.util :as util]))
 
 (defn home []
   (let [posts (model/select-*-desc :blog)]
@@ -20,10 +21,8 @@
 (defn dev []
   (layout/dev))
 
-(defn success [body]
-  {:status 200, :headers {"Content-Type" "text/html; charset=utf-8"}, :body body})
 
 (defroutes home-routes
-  (GET "/" [] (success (home)))
-  (GET "/about" [] (success (about)))
-  (GET "/dev" [] (success (dev))))
+  (GET "/" [] (util/success (home)))
+  (GET "/about" [] (util/success (about)))
+  (GET "/dev" [] (util/success (dev))))

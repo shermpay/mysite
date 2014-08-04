@@ -17,7 +17,7 @@
   (layout/common
    [:title "Home"
     :subtitle "of my [Blog | Portfolio]"]
-   ;; (include-css "css/content.css")
+   (include-css "css/content.css")
    [:h2 "Latest Post"]
    [:hr]
    (if (seq blog-post)
@@ -29,7 +29,7 @@
    (link-to "/blog" "More posts...")
    [:h2 "About Me"]
    [:hr]
-   ;; (include-css "css/about.css")
-   ;; (include-css "css/common.css")
+   (include-css "css/about.css")
+   (include-css "css/common.css")
    (about/general)
    (about/tech)))
