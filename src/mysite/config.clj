@@ -17,6 +17,8 @@
   (validation-fn (cred-type *credentials*)))
 
 (defn user-validation
+  "Takes a keyword user, a username and password pair to validate.
+  keyword, string, string -> boolean"
   [user username password]
   (let [details (user (:users *credentials*))]
     (and (= (:username details) username)

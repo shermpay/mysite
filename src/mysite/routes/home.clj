@@ -21,7 +21,6 @@
 (defn dev []
   (layout/dev))
 
-
 (defroutes home-routes
   (GET "/" [] (util/success (home)))
   (GET "/about" [] (util/success (about)))

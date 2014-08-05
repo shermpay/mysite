@@ -1,7 +1,9 @@
 (ns mysite.util
   (:require [clojure.string :as str]))
 
-(defn truncate-timestamp [ts key]
+(defn truncate-timestamp
+  "Takes a timestamp string and a key of [:hour | :minute | :second] and truncates the string."
+  [ts key]
   {:pre (keyword? key)}
   (let [v (str/split (.toString ts) #":")]
    (case key

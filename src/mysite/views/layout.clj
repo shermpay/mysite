@@ -10,7 +10,9 @@
 (defn- side-menu-item [text link]
   [:li [:a {:href link} text]])
 
-(defn head []
+(defn head
+  "Head Tags, such as title, js, css, meta"
+  []
   [:head
    [:title "Sherman Pay's Website"]
    (include-css "http://yui.yahooapis.com/pure/0.5.0/pure-min.css"
@@ -24,11 +26,15 @@
    [:link {:rel "icon", :type "image/ico", :href "/img/icons/favicon.ico"}]
    [:meta {:http-equiv "Content-Type" :content "text/html;charset=utf-16"}]])
 
-(defn foot []
+(defn foot
+  "Footer at bottom of page"
+  []
   [:div#mainFoot
    [:div "Copyright © 2014. Sherman Pay Jing Hao."]])
 
-(defn common-body [title subtitle & body]
+(defn common-body
+  "Main content body"
+  [title subtitle & body]
   [:body
      [:div#general
       [:a {:id "menuLink", :class "menu-link", :href "#"} [:span]]
@@ -63,7 +69,9 @@
    [:script {:type "text/javascript"} "SyntaxHighlighter.all()"]])
 
 
-(defn common [[:title title, :subtitle subtitle] & body]
+(defn common
+  "Common elements of page. Title is the main header text."
+  [[:title title, :subtitle subtitle] & body]
   (html5
    [:html
     (head)

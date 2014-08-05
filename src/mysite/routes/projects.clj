@@ -9,6 +9,10 @@
             [mysite.routes.util :as util]))
 
 (defn view-projects
+  "Main project view
+  Pass in success for alert message describing status of new/edit post.
+  None -> [Hiccup]
+  success :boolean -> [Hiccup]"
   ([]
      (let [projs (model/select-*-desc :projects)]
        (projects/view projs)))
@@ -52,6 +56,7 @@
                           project-version docs source tags username password]
         (if (post-project id project-name project-description project-content
                           project-version docs source tags username password)
+          ;; 302 for redirect
           {:status 302, :headers {"Content-Type" "text/html; charset=utf-8"
                                   "Location" "/projects?success=true"}}
           {:status 302, :headers {"Content-type" "text/html; charset=utf-8"

@@ -1,4 +1,5 @@
 (ns mysite.models
+  "Namespace for all model interaction. Tables are mention via keyword, (eg. :blog for the blog table)"
   (:require [clojure.java.jdbc :as jdbc]
             [mysite.config :as config]
             [mysite.util :as util]))
@@ -24,40 +25,54 @@
                              [:source "varchar(255)"]
                              [:tags "varchar(128)"]]})
 
-(defn check-table [table]
+(defn check-table
+  "Check if Table exists"
+  [table]
   {:pre (keyword? table)}
   (let [tables (jdbc/query spec [(str "show tables like '" (name table) "'")])]
     (= 1 (count tables))))
 
-(defn describe-table [table]
+(defn describe-table
+  "Describe table specification"
+  [table]
   {:pre (keyword? table)}
   (jdbc/query spec [(str "describe " (name table))]))
 
-(defn create-table [table]
+(defn create-table
+  "Create a new table given a table name, and table spec defined in the table-specs var"
+  [table]
   {:pre (keyword? table)}
   (jdbc/db-do-commands
    spec
    (let [table-spec (table table-specs)]
        (apply (partial jdbc/create-table-ddl table) table-spec))))
 
-(defn check-create-table [table]
+(defn check-create-table
+  "Convenience method to check for table and create if doesn't exist. Used during startup"
+  [table]
   (jdbc/with-db-connection [_ spec]
     (if (not (check-table table))
       (create-table table (get table-specs table)))))
 
-(defn select-* [table]
+(defn select-*
+  [table]
   {:pre (keyword? table)}
   (jdbc/query spec [(str "select * from " (name table))]))
 
-(defn select-*-desc [table]
+(defn select-*-desc
+  "Select * from table order by id desc"
+  [table]
   {:pre (keyword? table)}
   (jdbc/query spec [(str "select * from " (name table)  " order by id desc")]))
 
-(defn select-id [table id]
+(defn select-id
+  "Select * from table where id = ?"
+  [table id]
   {:pre (keyword? table)}
   (jdbc/query spec [(str "select * from " (name table) " where id = ?") id]))
 
-(defn drop-table [table]
+(defn drop-table
+  [table]
   (jdbc/db-do-commands
    spec
    (jdbc/drop-table-ddl table)))

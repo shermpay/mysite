@@ -1,9 +1,12 @@
 (ns mysite.core
+  "Core cljs functions"
   ;; (:require [reagent.core :as reagent :refer [atom]]
   ;;           [ajax.core :refer [POST]])
   (:require [clojure.string :as string]))
 
-(defn toggle-class [element name]
+(defn toggle-class
+  "Toggle a class for a specific DOM element. (Toggle: Add|Remove)"
+  [element name]
   (let [classes (.split (.-className element) #"\s+")
         length  (.-length classes)
         i 0]
