@@ -52,7 +52,7 @@
   [table]
   (jdbc/with-db-connection [_ spec]
     (if (not (check-table table))
-      (create-table table (get table-specs table)))))
+      (create-table table))))
 
 (defn select-*
   [table]
