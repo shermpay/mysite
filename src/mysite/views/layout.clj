@@ -16,13 +16,17 @@
   [:head
    [:title "Sherman Pay's Website"]
    (include-css "http://yui.yahooapis.com/pure/0.5.0/pure-min.css"
+                "http://fonts.googleapis.com/css?family=Roboto"
                 "/css/common.css"
                 "/css/sh/shCore.css"
-                "/css/sh/shCoreEmacs.css"
-                "/css/sh/shThemeEmacs.css")
+                "/css/sh/shThemeDjango.css"
+                "/css/sh/shCoreDjango.css"
+                "/css/sh/shClojureExtra.css")
    (include-js "/js/main.js"
                "/js/sh/shCore.js"
-               "/js/sh/shBrushJava.js")
+               "/js/sh/shBrushJava.js"
+               "/js/sh/shBrushClojure.js"
+               "js/sh/shBrushPython.js")
    [:link {:rel "icon", :type "image/ico", :href "/img/icons/favicon.ico"}]
    [:meta {:http-equiv "Content-Type" :content "text/html;charset=utf-16"}]])
 

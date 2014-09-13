@@ -1,4 +1,4 @@
-
+/* Green:  #2ecc71 */
 #contact li a:hover {
     text-decoration: underline;
 }
@@ -9,6 +9,11 @@ html {
 body {
     background: repeat scroll;
     font-size: 2em;
+    font-family: 'Roboto';
+}
+
+blockquote {
+    color: #7f8c8d;
 }
 
 #general {
@@ -322,7 +327,7 @@ and (max-device-width: 480px) {
 }
 
 a {
-    color: #2ecc71;
+    color: #3498db;
 }
 
 body, #sideMenu li, #contact li a {
