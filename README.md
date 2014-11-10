@@ -23,6 +23,33 @@ Four content components
 * About Me
 * Resume
 
+## Roadmap
+### Overall
+Have a working base, need to touchup code base.
+Migrating db interaction to use Korma
+### Blog
+#### Done
+- Markdown
+- Editable
+- Viewable
+#### Todo
+- Archive
+- Tags
+- Word count
+- Preview
+- Metadata?
+
+### Projects
+#### Done
+- Markdown
+- Editable
+- Viewable
+#### Todo
+- Post projects
+
+### Others
+#### Todo
+- Resume
 
 ## License
 

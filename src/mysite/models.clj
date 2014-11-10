@@ -54,6 +54,18 @@
     (if (not (check-table table))
       (create-table table))))
 
+(defn select
+  [& {:keys [from columns order-by limit]
+      :or {:columns :*
+           :order-by :asc
+           :limit 8}}]
+  {:pre [(every? keyword? [from order-by])
+         (or (keyword? columns) (coll? columns))
+         (integer? limit)]}
+  (let [cols (apply str (interpose " " columns))
+        table (name from)]
+   (jdbc/db-do-prepared spec (str "select " cols " from " table))))
+
 (defn select-*
   [table]
   {:pre (keyword? table)}
