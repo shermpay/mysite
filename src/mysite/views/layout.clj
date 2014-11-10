@@ -58,7 +58,7 @@
         [:ul#contact
          [:li.contact [:a {:href "mailto:shermanpay1991@gmail.com"} "Gmail"]]
          [:li.contact [:a {:href "https://github.com/shermpay"} "Github"]]
-         [:li.contact [:a {:href "misc/resume.pdf"} "Résumé"]]]]]
+         [:li.contact [:a {:href "/resumes/Resume_2014.pdf"} "Résumé"]]]]]
 
       [:div#main
        [:div#mainHead
