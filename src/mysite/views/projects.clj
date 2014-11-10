@@ -18,9 +18,9 @@
    [:div.project-key
     [:div.project-description (markdown/md-to-html-string description)]
     [:hr {:style "margin-bottom: 0.1em;"}]
-    [:span [:a {:href docs} "Documentation"]]
+    [:span [:a {:href docs} "Project"]]
     [:span {:style "visibility: hidden;"} "foo"]
-    [:span [:a {:href source} "Source"]]
+    [:span [:a {:href source} "Source "]]
     [:div.meta-data
      [:div.project-time
       [:span.project-id "#" id]
