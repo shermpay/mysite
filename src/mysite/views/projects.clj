@@ -32,7 +32,7 @@
 (defn projects-common [header & body]
   (layout/common
    header
-   (include-css "css/content.css")
+   (include-css "/css/content.css")
    body))
 
 (defn view [projects]
@@ -80,5 +80,5 @@
    [:title (:name proj)
     :subtitle (:version proj)]
    [:div
-    [:span (util/truncate-timestamp start_date :hour)]]
-   [:div (markdown/md-to-html-string (:content proj))]))
+    [:span (util/truncate-timestamp (:start_date proj) :hour)]]
+   [:div.project (markdown/md-to-html-string (:content proj))]))

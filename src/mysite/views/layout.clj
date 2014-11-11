@@ -26,7 +26,9 @@
                "/js/sh/shCore.js"
                "/js/sh/shBrushJava.js"
                "/js/sh/shBrushClojure.js"
-               "js/sh/shBrushPython.js")
+               "/js/sh/shBrushPython.js"
+               "/js/sh/shBrushBash.js"
+               "/js/sh/shBrushPlain.js")
    [:link {:rel "icon", :type "image/ico", :href "/img/icons/favicon.ico"}]
    [:meta {:http-equiv "Content-Type" :content "text/html;charset=utf-16"}]])
 
