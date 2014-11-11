@@ -46,11 +46,15 @@
       (. System/err println msg)
       false)))
 
+(defn show-project [proj]
+  (projects/show (keyword proj)))
+
 (defroutes projects-routes
   (GET "/projects" [] (util/success (view-projects)))
   (GET "/projects" [success] (util/success (view-projects success)))
   (GET "/projects/new" [] (util/success (new-project)))
   (GET "/projects/edit" [id] (util/success (edit-project id)))
+  (GET "/projects/p/:proj" [proj] (util/success (show-project proj)))
 
   (POST "/projects/post" [id project-name project-description project-content 
                           project-version docs source tags username password]

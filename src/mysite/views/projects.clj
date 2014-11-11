@@ -72,3 +72,13 @@
    [:title "Projects"
     :subtitle "(set! project)"]
    (form (first (model/select-id :projects id)))))
+
+(defmulti show identity)
+(defmethod show :clojure-snake [proj]
+  (projects-common
+   [:title "Snake Game"
+    :subtitle "In Clojure"]
+   [:div
+    [:h3 "Download at the following link "
+     [:a {:href "/others/clojure-snake.jar"} "clojure-snake.jar"]]
+    [:h4 "Run it using java -jar clojure-snake.jar at your terminal!"]]))
