@@ -78,4 +78,7 @@
 (defn show [proj]
   (projects-common
    [:title (:name proj)
-    :subtitle "hello"]))
+    :subtitle (:version proj)]
+   [:div
+    [:span (util/truncate-timestamp start_date :hour)]]
+   [:div (markdown/md-to-html-string (:content proj))]))
