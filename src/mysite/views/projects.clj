@@ -18,7 +18,9 @@
    [:div.project-key
     [:div.project-description (markdown/md-to-html-string description)]
     [:hr {:style "margin-bottom: 0.1em;"}]
-    [:span [:a {:href docs} "Project"]]
+    [:span [:a {:href (str "/projects/p/" name)} "Project"]]
+    [:span {:style "visibility: hidden;"} "foo"]
+    [:span [:a {:href docs} "Docs"]]
     [:span {:style "visibility: hidden;"} "foo"]
     [:span [:a {:href source} "Source "]]
     [:div.meta-data
@@ -73,12 +75,7 @@
     :subtitle "(set! project)"]
    (form (first (model/select-id :projects id)))))
 
-(defmulti show identity)
-(defmethod show :clojure-snake [proj]
+(defn show [proj]
   (projects-common
-   [:title "Snake Game"
-    :subtitle "In Clojure"]
-   [:div
-    [:h3 "Download at the following link "
-     [:a {:href "/others/clojure-snake.jar"} "clojure-snake.jar"]]
-    [:h4 "Run it using java -jar clojure-snake.jar at your terminal!"]]))
+   [:title (:name proj)
+    :subtitle "hello"]))

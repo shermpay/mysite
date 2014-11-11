@@ -71,6 +71,16 @@
   {:pre (keyword? table)}
   (jdbc/query spec [(str "select * from " (name table))]))
 
+(defn select-where
+  [table params]
+  {:pre [(keyword? table)
+         (map? params)]}
+  (let [query (->> params
+                   (map (fn [[k v]] (str (name k) "=" (str \' v \'))))
+                   (interpose " and ")
+                   (apply str))]
+   (jdbc/query spec [(str "select * from " (name table) " where " query)])))
+
 (defn select-*-desc
   "Select * from table order by id desc"
   [table]

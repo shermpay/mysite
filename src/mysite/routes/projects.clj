@@ -47,7 +47,7 @@
       false)))
 
 (defn show-project [proj]
-  (projects/show (keyword proj)))
+  (projects/show (first (model/select-where :projects {:name proj}))))
 
 (defroutes projects-routes
   (GET "/projects" [] (util/success (view-projects)))
