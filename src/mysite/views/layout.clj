@@ -16,7 +16,6 @@
   [:head
    [:title "Sherman Pay's Website"]
    (include-css "http://yui.yahooapis.com/pure/0.5.0/pure-min.css"
-                "http://fonts.googleapis.com/css?family=Roboto"
                 "/css/common.css"
                 "/css/sh/shCore.css"
                 "/css/sh/shThemeDjango.css"
@@ -29,6 +28,8 @@
                "/js/sh/shBrushPython.js"
                "/js/sh/shBrushBash.js"
                "/js/sh/shBrushPlain.js")
+   [:link {:rel "stylesheet" :type "text/css"
+           :href "http://fonts.googleapis.com/css?family=Roboto"}]
    [:link {:rel "icon", :type "image/ico", :href "/img/icons/favicon.ico"}]
    [:meta {:http-equiv "Content-Type" :content "text/html;charset=utf-16"}]])
 

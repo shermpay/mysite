@@ -7,7 +7,15 @@
 }
 
 .blog-meta {
-    color: #1abc9c;
+    color: #4caf50;
+}
+
+.tags {
+    background-color: #424242;
+    margin-left: 0.1em;
+    margin-right: 0.1em;
+    padding: 0.05em 0.1em 0.05em 0.1em;
+    border: 0.1em solid #eceff1;
 }
 
 .blog .blog-title .blog-meta {

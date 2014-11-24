@@ -18,6 +18,13 @@
    (include-css "css/content.css")
    body))
 
+
+(def color-mapping {:red "#f44336"
+                    :pink "#e91e63"
+                    :purple "#9c27b0"
+                    :indigo "#3f51bf"
+                    :blue "#2196f3"})
+
 (defn blog-card [header content id date & {tags :tags edited :edited}]
   [:div.blog
    [:div.blog-title
@@ -28,7 +35,8 @@
       [:span.entry-date  (util/truncate-timestamp date :second) " "]
       (if edited [:span.edited-date "edited on "
                   (util/truncate-timestamp edited :second)])
-      [:span.tags tags]]]]
+      (map #(vector :span.tags (clojure.string/trim %))
+           (clojure.string/split tags #","))]]]
    [:hr]
    [:p (markdown/md-to-html-string content)]])
 

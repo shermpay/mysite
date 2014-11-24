@@ -311,38 +311,34 @@ and (max-device-width: 480px) {
 
 /* Color Themes
    Dark -> Light
-   1: #34495e (Black)
-   2: #3498db (Blue)
-   3: #1abc9c (Turquois)
-   4: #2ecc71 (Green)
-   5: #ecf0f1 (Grey/White)
+   1: #424242 (Dark Grey)
+   2: #2196f3 (Blue)
+   3: #009688 (Teal)
+   4: #4caf50 (Green)
+   5: #eceff1 (Light Blue Grey)
+*/
 
- Background: #ecf0f1 (black)
- Main: #3498db (blue)
- Italics: #F0F2EE (white)
- Bold: #A3FF9B (green)
- Code: #3EFBFF (cyan)*/
 #title, #subtitle, .pure-menu.pure-menu-open li a:hover,  #home a:hover {
-    color: #ecf0f1;
+    color: #ffffff;             /* white */
 }
 
 a {
-    color: #3498db;
+    color: #03a9f4;             /* light blue*/
 }
 
 body, #sideMenu li, #contact li a {
-    color: #34495e;
+    color: #424242;             /* dark grey */
     text-decoration: none;
 }
 
 #contact li a:hover {
-    color: #1abc9c; 
+    color: #009688;             /* teal */
 }
 
 body {
-    background-color:  #ecf0f1;
+    background-color:  #eceff1; /* light blue grey */
 }
 
 #mainHead, #home a:hover, #menu-link, .pure-menu.pure-menu-open li a:hover {
-    background-color: #3498db;
+    background-color: #2196f3;  /*blue */
 }
