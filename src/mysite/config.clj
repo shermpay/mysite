@@ -6,10 +6,9 @@
 (def ^:dynamic *credentials-path* "private/config.edn")
 
 (def ^:dynamic *credentials*
-  (-> *credentials-path*
-      (clojure.java.io/resource)
-      (slurp)
-      (clojure.edn/read-string)))
+  (if-let [url (clojure.java.io/resource *credentials-path*)]
+    (clojure.edn/read-string (slurp url))
+    (.println System/err (str "Credentials: " *credentials-path* " not found!"))))
 
 (defn check-credentials
   [cred-type validation-fn]
