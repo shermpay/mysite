@@ -4,10 +4,9 @@
             [mysite.config :as config]
             [mysite.util :as util]))
 
+(defonce spec (:database-spec config/*credentials*))
 
-(def spec (:database-spec config/*credentials*))
-
-(def table-specs {:blog [[:id :int :primary :key :auto_increment]
+(defonce table-specs {:blog [[:id :int :primary :key :auto_increment]
                          [:title "varchar(64)"]
                          [:entry_date :datetime]
                          [:edited :datetime]

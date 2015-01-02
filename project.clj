@@ -2,15 +2,16 @@
   :description "Sherman Pay's personal website."
   :url "http://shermanpay.com/"
   :dependencies [[org.clojure/clojure "1.6.0"]
-                 [compojure "1.1.6"]
+                 [compojure "1.3.1"]
                  [hiccup "1.0.5"]
                  [ring-server "0.3.1"]
-                 [org.clojure/java.jdbc "0.3.4"]
-                 [mysql/mysql-connector-java "5.1.25"]
-                 [markdown-clj "0.9.47"]]
+                 [org.clojure/java.jdbc "0.3.6"]
+                 [mysql/mysql-connector-java "5.1.34"]
+                 [markdown-clj "0.9.61"]]
   :resource-paths ["resources"]
-  :plugins [[lein-ring "0.8.10"]
-            [lein-cljsbuild "1.0.3"]]
+  :plugins [[lein-ring "0.8.13"]
+            [lein-cljsbuild "1.0.3"]
+            [lein-figwheel "0.2.0-SNAPSHOT"]]
   :ring {:handler mysite.handler/app
          :init mysite.handler/init
          :destroy mysite.handler/destroy}
@@ -24,5 +25,6 @@
    {:ring
     {:open-browser? false, :stacktraces? false, :auto-reload? false}}
    :dev
-   {:dependencies [[ring-mock "0.1.5"] [ring/ring-devel "1.2.1"]
-                   [org.clojure/clojurescript "0.0-2268"]]}})
+   {:dependencies [[ring-mock "0.1.5"] [ring/ring-devel "1.3.2"]
+                   [org.clojure/clojurescript "0.0-2629"]
+                   [figwheel "0.2.0-SNAPSHOT"]]}})

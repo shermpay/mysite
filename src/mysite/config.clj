@@ -1,7 +1,7 @@
 (ns mysite.config
   "Used for manipulating a private configuration file that contains
   informaiton to web site"
-  [:require [clojure.edn]])
+  (:require [clojure.edn]))
 
 (def ^:dynamic *credentials-path* "private/config.edn")
 
