@@ -282,10 +282,9 @@ and (max-device-width: 480px) {
     max-width: 92%;
 }
 
-/* Tags Style */
-.tag {
-    margin: 1em;
-    margin-left: 0;
+.glyph {
+    margin-right: 1em;
+    margin-top: 0.4em;
 }
 
 #clojure {

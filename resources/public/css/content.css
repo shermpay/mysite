@@ -11,6 +11,13 @@
 }
 
 .tags {
+}
+
+.tag-glyph {
+    float: right;
+}
+
+.tag {
     background-color: #eceff1;
     margin-left: 0.1em;
     margin-right: 0.1em;
@@ -23,7 +30,7 @@
     font-size: 0.8em;
 }
 
-.blog .blog-title .blog-meta .tags {
+.blog .blog-title .blog-meta .tag {
     float: right;
 }
 

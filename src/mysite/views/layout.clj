@@ -1,14 +1,27 @@
 (ns mysite.views.layout
   (:require [hiccup.page :refer [html5 include-css include-js]]
-            [hiccup.element :refer [unordered-list ordered-list link-to]]
+            [hiccup.element :refer [unordered-list ordered-list link-to image]]
             [markdown.core :as markdown])
   (:use hiccup.core))
+
+(def ^:dynamic *glyph-path* "/img/glyphicons/png/glyphicons-")
 
 (defn- side-menu-heading [text]
   [:li.pure-menu-heading text])
 
-(defn- side-menu-item [text link]
-  [:li [:a {:href link} text]])
+(defn- side-menu-item [text link & {:keys [glyph] :or {glyph "433-plus.png"}}]
+  [:li
+   [:a {:href link}
+    [:span {:class "glyph"}
+     (image {:width 14, :height 14} (str *glyph-path* glyph) "*")]
+    text]])
+
+(defn- side-menu-contact [text link & {:keys [glyph] :or {glyph "433-plus.png"}}]
+  [:li.contact
+   [:a {:href link}
+    [:span {:class "glyph"}
+     (image {:width 10, :height 10} (str *glyph-path* glyph) "*")]
+    text]])
 
 (defn head
   "Head Tags, such as title, js, css, meta"
@@ -52,16 +65,18 @@
         [:a {:href "/"} [:h2 "白"]]]
         [:hr]
         [:ul#sideMenuItem
-         (side-menu-item "Blog" "/blog")
-         (side-menu-item "Projects" "/projects")
-         (side-menu-item "About Me" "/about")]]
+         (side-menu-item "Blog" "/blog" :glyph "331-blog.png")
+         (side-menu-item "Projects" "/projects" :glyph "591-folder-heart.png")
+         (side-menu-item "About Me" "/about" :glyph "4-user.png")]]
 
        [:div {:id "sideMenuContact" :class ""}
         [:hr]
         [:ul#contact
-         [:li.contact [:a {:href "mailto:shermanpay1991@gmail.com"} "Gmail"]]
-         [:li.contact [:a {:href "https://github.com/shermpay"} "Github"]]
-         [:li.contact [:a {:href "/resumes/Resume_2014.pdf"} "Résumé"]]]]]
+         (side-menu-contact "Gmail" "mailto:shermanpay1991@gmail.com"
+                            :glyph "11-envelope.png")
+         (side-menu-contact "Github" "https://github.com/shermpay"
+                            :glyph "423-git-branch.png")
+         (side-menu-contact "Résumé" "/resumes/Resume_2014.pdf" :glyph "30-notes-2.png")]]]
 
       [:div#main
        [:div#mainHead

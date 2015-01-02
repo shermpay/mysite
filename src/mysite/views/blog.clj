@@ -1,6 +1,6 @@
 (ns mysite.views.blog
   (:require [hiccup.page :refer [html5 include-css include-js]]
-            [hiccup.element :refer [unordered-list ordered-list link-to]]
+            [hiccup.element :refer [unordered-list ordered-list link-to image]]
             [hiccup.form :refer [form-to label password-field submit-button text-area
                                  text-field with-group hidden-field]]
             [hiccup.core :refer :all]
@@ -35,8 +35,12 @@
       [:span.entry-date  (util/truncate-timestamp date :second) " "]
       (if edited [:span.edited-date "edited on "
                   (util/truncate-timestamp edited :second)])
-      (map #(vector :span.tags (clojure.string/trim %))
-           (clojure.string/split tags #","))]]]
+
+      [:span.tags
+       (map #(vector :span.tag (clojure.string/trim %))
+            (clojure.string/split tags #","))
+       [:span.tag-glyph (image {:width 16, :height 16 :class "glyph"}
+                               (str layout/*glyph-path* "67-tags.png"))]]]]]
    [:hr]
    [:p (markdown/md-to-html-string content)]])
 
