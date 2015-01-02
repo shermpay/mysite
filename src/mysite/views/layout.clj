@@ -5,6 +5,7 @@
   (:use hiccup.core))
 
 (def ^:dynamic *glyph-path* "/img/glyphicons/png/glyphicons-")
+(def ^:dynamic *glyph-social-path* "/img/glyphicons_social/png/social-")
 
 (defn- side-menu-heading [text]
   [:li.pure-menu-heading text])
@@ -16,11 +17,11 @@
      (image {:width 14, :height 14} (str *glyph-path* glyph) "*")]
     text]])
 
-(defn- side-menu-contact [text link & {:keys [glyph] :or {glyph "433-plus.png"}}]
+(defn- side-menu-contact [text link & {:keys [glyph] :or {glyph (str *glyph-path* "433-plus.png")}}]
   [:li.contact
    [:a {:href link}
     [:span {:class "glyph"}
-     (image {:width 10, :height 10} (str *glyph-path* glyph) "*")]
+     (image {:width 12, :height 12} glyph "*")]
     text]])
 
 (defn head
@@ -73,10 +74,11 @@
         [:hr]
         [:ul#contact
          (side-menu-contact "Gmail" "mailto:shermanpay1991@gmail.com"
-                            :glyph "11-envelope.png")
+                            :glyph (str *glyph-path* "11-envelope.png"))
          (side-menu-contact "Github" "https://github.com/shermpay"
-                            :glyph "423-git-branch.png")
-         (side-menu-contact "Résumé" "/resumes/Resume_2014.pdf" :glyph "30-notes-2.png")]]]
+                            :glyph (str *glyph-social-path* "22-github.png"))
+         (side-menu-contact "Résumé" "/resumes/Resume_2014.pdf"
+                            :glyph (str *glyph-path* "30-notes-2.png"))]]]
 
       [:div#main
        [:div#mainHead
