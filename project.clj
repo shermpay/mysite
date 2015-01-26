@@ -1,4 +1,4 @@
-(defproject mysite "1.1.1-SNAPSHOT"
+(defproject mysite "1.1.2-SNAPSHOT"
   :description "Sherman Pay's personal website."
   :url "http://shermanpay.com/"
   :dependencies [[org.clojure/clojure "1.6.0"]
