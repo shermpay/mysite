@@ -15,5 +15,7 @@ pom.xml
 .#*
 
 .lein-repl-history
-resources/private
+/resources/private
 main.js
+*.js
+/resources/public/js

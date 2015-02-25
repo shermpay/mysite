@@ -20,7 +20,7 @@
          :destroy mysite.handler/destroy}
   :cljsbuild {:builds [{:id "prod"
                         :source-paths ["src-cljs"]
-                        :compiler {:output-to "resources/public/js/out/main.js"
+                        :compiler {:output-to "resources/public/js/main.js"
                                    :optimizations :advanced
                                    :pretty-print false}}
                        {:id "dev"
