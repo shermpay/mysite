@@ -37,6 +37,7 @@
                 "/css/sh/shClojureExtra.css")
    (include-js "/js/out/goog/base.js"
                "/js/main.js"
+               "/js/out/mysite/core.js"
                "/js/sh/shCore.js"
                "/js/sh/shBrushJava.js"
                "/js/sh/shBrushClojure.js"

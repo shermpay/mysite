@@ -15,9 +15,7 @@
        (.splice classes (.indexOf classes name) 1)
        (.push classes name))
 
-      (set! (.-className element) (string/join " " classes)))
-    
-    (.log js/console classes)))
+      (set! (.-className element) (string/join " " classes)))))
 
 (defn init []
   (let [main (.getElementById js/document "main")
