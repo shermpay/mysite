@@ -35,7 +35,8 @@
                 "/css/sh/shThemeDjango.css"
                 "/css/sh/shCoreDjango.css"
                 "/css/sh/shClojureExtra.css")
-   (include-js "/js/main.js"
+   (include-js "/js/out/goog/base.js"
+               "/js/main.js"
                "/js/sh/shCore.js"
                "/js/sh/shBrushJava.js"
                "/js/sh/shBrushClojure.js"
@@ -90,7 +91,8 @@
         body]
        (foot)]]
    [:div#mask]
-   [:script {:type "text/javascript"} "SyntaxHighlighter.all()"]])
+   ;; [:script {:type "text/javascript"} "SyntaxHighlighter.all()"]
+   ])
 
 
 (defn common
