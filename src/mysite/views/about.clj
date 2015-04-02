@@ -29,7 +29,7 @@
     [:h3 "Tech stuff"]
     [:p (tech-exp :summary)]
     [:p "To find out more go to my "
-     [:a {:href "#"} (layout/urls :resume)] " and "
+     [:a {:href (layout/urls :resume)} "Resume"] " and "
      [:a {:href (layout/urls :projects)} "Projects Page"] "."]
     ;; [:div#proglang
     ;;  [:h4 "Programming Languages"]

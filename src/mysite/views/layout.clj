@@ -63,6 +63,28 @@
   [:div#mainFoot
    [:div "Copyright © 2014. Sherman Pay Jing Hao."]])
 
+(defn ad-sense-wide []
+;;   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+;; <!-- Wide Colorful -->
+;; <ins class="adsbygoogle"
+;;      style="display:block"
+;;      data-ad-client="ca-pub-2319654658963767"
+;;      data-ad-slot="9830314730"
+;;      data-ad-format="auto"></ins>
+;; <script>
+;; (adsbygoogle = window.adsbygoogle || []).push({});
+  ;; </script>
+  [:div
+   [:script {:async true
+            :src "//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"}]
+   [:ins {:class "adsbygoogle"
+          :style "display:block"
+          :data-ad-client "ca-pub-2319654658963767"
+          :data-ad-slot "9830314730"
+          :data-ad-format "auto"}]
+   [:script "(adsbygoogle = window.adsbygoogle || []).push({});"]])
+
+
 (defn common-body
   "Main content body"
   [title subtitle & body]
@@ -98,11 +120,11 @@
        [:hr]
        [:div#mainContent
         body]
+       (ad-sense-wide)
        (foot)]]
    [:div#mask]
    ;; [:script {:type "text/javascript"} "SyntaxHighlighter.all()"]
    ])
-
 
 (defn common
   "Common elements of page. Title is the main header text."
