@@ -4,6 +4,14 @@
             [markdown.core :as markdown])
   (:use hiccup.core))
 
+(def ^:const urls
+  {:resume "/resumes/Resume_2014.pdf"
+   :email  "mailto:shermanpay1991@gmail.com"
+   :github "https://github.com/shermpay"
+   :projects "/projects"
+   :blog "/blog"
+   :about "about"})
+
 (def ^:dynamic *glyph-path* "/img/glyphicons/png/glyphicons-")
 (def ^:dynamic *glyph-social-path* "/img/glyphicons_social/png/social-")
 
@@ -68,18 +76,18 @@
         [:a {:href "/"} [:h2 "白"]]]
         [:hr]
         [:ul#sideMenuItem
-         (side-menu-item "Blog" "/blog" :glyph "331-blog.png")
-         (side-menu-item "Projects" "/projects" :glyph "591-folder-heart.png")
-         (side-menu-item "About Me" "/about" :glyph "4-user.png")]]
+         (side-menu-item "Blog" (urls :blog) :glyph "331-blog.png")
+         (side-menu-item "Projects" (urls :projects) :glyph "591-folder-heart.png")
+         (side-menu-item "About Me" (urls :about) :glyph "4-user.png")]]
 
        [:div {:id "sideMenuContact" :class ""}
         [:hr]
         [:ul#contact
-         (side-menu-contact "Gmail" "mailto:shermanpay1991@gmail.com"
+         (side-menu-contact "Gmail" (urls :email)
                             :glyph (str *glyph-path* "11-envelope.png"))
-         (side-menu-contact "Github" "https://github.com/shermpay"
+         (side-menu-contact "Github" (urls :github) 
                             :glyph (str *glyph-social-path* "22-github.png"))
-         (side-menu-contact "Résumé" "/resumes/Resume_2014.pdf"
+         (side-menu-contact "Résumé" (urls :resume) 
                             :glyph (str *glyph-path* "30-notes-2.png"))]]]
 
       [:div#main

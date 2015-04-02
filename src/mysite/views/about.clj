@@ -8,22 +8,29 @@
             [mysite.views.layout :as layout]
             [mysite.util :as util]))
 
+(def ^:const bio
+  {:summary "My name is Sherman and I am a Computer Scientist currently studying
+  in the University of Washington. I am very passionate about CS and I am always
+  seeking opportunities to learn more about it. This site serves to share a bit
+  about myself and my projects."})
+
 (defn general []
   [:div.content
     [:h3 "Hi!"]
-    [:p "My name is Sherman and I am a Computer Scientist currently
-   studying in the University of Washington. I am very passionate
-   about CS and I am always seeking opportunities to learn more about
-   it. This site serves to share a bit about myself and my projects."]])
+   [:p (bio :summary)]])
+
+(def ^:const tech-exp
+  {:summary "I have deep interests in Programming Languages,
+  Compilers and Networking.  Most of my side projects are toy languages,
+  productivity tools or fun experiments!"})
 
 (defn tech []
   [:div.content
     [:h3 "Tech stuff"]
-    [:p "I have deep interest in Programming Languages, Types and
-    Compilers. My other interests are Android and backend stuff."]
+    [:p (tech-exp :summary)]
     [:p "To find out more go to my "
-     [:a {:href "#"} "Resume"] " and "
-     [:a {:href "/projects"} "Projects Page"] "."]
+     [:a {:href "#"} (layout/urls :resume)] " and "
+     [:a {:href (layout/urls :projects)} "Projects Page"] "."]
     ;; [:div#proglang
     ;;  [:h4 "Programming Languages"]
     ;;  [:div#spectrum
@@ -51,5 +58,4 @@
     :subtitle "Sherman Pay"]
    (include-css "css/about.css")
    (general)
-   (tech)
-   ))
+   (tech)))
